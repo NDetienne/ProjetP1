@@ -178,11 +178,14 @@ Au lieu de cela, le package lejos.robotics.subsumption fournit une architecture 
 
 <p>Chaque tâche est définie par trois éléments, spécifiés par trois méthodes de l'interface Behavior : </p>
 
-<p>• la méthode <strong>takeControl()</strong> fournit la condition d'activation qui détermine quand cette tâche doit être initiée. On peut vouloir qu'une action soit activée si un obstacle se trouve à moins de 25cm (voir exemple ci-dessous), ou si le capteur de tactile est pressé. On peut également vérifier des conditions multiples. Exemple : La tâche est activée si, à la fois le capteur photosensible détecte une ligne noire, ET si la valeur booléenne d'une variable est à true. Pour que la tâche soit activée, il faut que la valeur retournée par la méthode <strong>takecontrol()</strong> soit <strong>true</strong>. </p>
+<h3>
+<a id="511-la-méthode-takecontrol-fournit-la-condition-dactivation-qui-détermine-quand-cette-tâche-doit-être-initiée-on-peut-vouloir-quune-action-soit-activée-si-un-obstacle-se-trouve-à-moins-de-25cm-voir-exemple-ci-dessous-ou-si-le-capteur-de-tactile-est-pressé-on-peut-également-vérifier-des-conditions-multiples-exemple-la-tâche-est-activée-si-à-la-fois-le-capteur-photosensible-détecte-une-ligne-noire-et-si-la-valeur-booléenne-dune-variable-est-à-true-pour-que-la-tâche-soit-activée-il-faut-que-la-valeur-retournée-par-la-méthode-takecontrol-soit-true" class="anchor" href="#511-la-m%C3%A9thode-takecontrol-fournit-la-condition-dactivation-qui-d%C3%A9termine-quand-cette-t%C3%A2che-doit-%C3%AAtre-initi%C3%A9e-on-peut-vouloir-quune-action-soit-activ%C3%A9e-si-un-obstacle-se-trouve-%C3%A0-moins-de-25cm-voir-exemple-ci-dessous-ou-si-le-capteur-de-tactile-est-press%C3%A9-on-peut-%C3%A9galement-v%C3%A9rifier-des-conditions-multiples-exemple-la-t%C3%A2che-est-activ%C3%A9e-si-%C3%A0-la-fois-le-capteur-photosensible-d%C3%A9tecte-une-ligne-noire-et-si-la-valeur-bool%C3%A9enne-dune-variable-est-%C3%A0-true-pour-que-la-t%C3%A2che-soit-activ%C3%A9e-il-faut-que-la-valeur-retourn%C3%A9e-par-la-m%C3%A9thode-takecontrol-soit-true" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.1.1) la méthode <strong>takeControl()</strong> fournit la condition d'activation qui détermine quand cette tâche doit être initiée. On peut vouloir qu'une action soit activée si un obstacle se trouve à moins de 25cm (voir exemple ci-dessous), ou si le capteur de tactile est pressé. On peut également vérifier des conditions multiples. Exemple : La tâche est activée si, à la fois le capteur photosensible détecte une ligne noire, ET si la valeur booléenne d'une variable est à true. Pour que la tâche soit activée, il faut que la valeur retournée par la méthode <strong>takecontrol()</strong> soit <strong>true</strong>.</h3>
 
-<p>• la méthode <strong>action()</strong> définit l'action que cette tâche doit accomplire (voir exemple ci-dessous). Cette méthode est appelée dès que la tâche devient active. </p>
+<h3>
+<a id="511-la-méthode-action-définit-laction-que-cette-tâche-doit-accomplire-voir-exemple-ci-dessous-cette-méthode-est-appelée-dès-que-la-tâche-devient-active" class="anchor" href="#511-la-m%C3%A9thode-action-d%C3%A9finit-laction-que-cette-t%C3%A2che-doit-accomplire-voir-exemple-ci-dessous-cette-m%C3%A9thode-est-appel%C3%A9e-d%C3%A8s-que-la-t%C3%A2che-devient-active" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.1.1) la méthode <strong>action()</strong> définit l'action que cette tâche doit accomplire (voir exemple ci-dessous). Cette méthode est appelée dès que la tâche devient active.</h3>
 
-<p>• la méthode <strong>suppress()</strong> permet la suppression (l'arrêt) de l'action en cours d'exécution. Elle permet aussi de mettre à jour des données avant la fin de la tâche. Elle est appelée par l'<strong>Arbitrator</strong> sur la tâche en cours si la méthode <strong>takeControl()</strong> d'une tâche plus prioritaire retourne <strong>true</strong>. Si cette tâche arrêtée est réactivée plus tard durant l'exéction du programme, la méthode action sera exécutée depuis le début et non depuis l'endroit où elle avait été arrêtée précédemment.  </p>
+<h3>
+<a id="511-la-méthode-suppress-permet-la-suppression-larrêt-de-laction-en-cours-dexécution-elle-permet-aussi-de-mettre-à-jour-des-données-avant-la-fin-de-la-tâche-elle-est-appelée-par-larbitrator-sur-la-tâche-en-cours-si-la-méthode-takecontrol-dune-tâche-plus-prioritaire-retourne-true-si-cette-tâche-arrêtée-est-réactivée-plus-tard-durant-lexéction-du-programme-la-méthode-action-sera-exécutée-depuis-le-début-et-non-depuis-lendroit-où-elle-avait-été-arrêtée-précédemment" class="anchor" href="#511-la-m%C3%A9thode-suppress-permet-la-suppression-larr%C3%AAt-de-laction-en-cours-dex%C3%A9cution-elle-permet-aussi-de-mettre-%C3%A0-jour-des-donn%C3%A9es-avant-la-fin-de-la-t%C3%A2che-elle-est-appel%C3%A9e-par-larbitrator-sur-la-t%C3%A2che-en-cours-si-la-m%C3%A9thode-takecontrol-dune-t%C3%A2che-plus-prioritaire-retourne-true-si-cette-t%C3%A2che-arr%C3%AAt%C3%A9e-est-r%C3%A9activ%C3%A9e-plus-tard-durant-lex%C3%A9ction-du-programme-la-m%C3%A9thode-action-sera-ex%C3%A9cut%C3%A9e-depuis-le-d%C3%A9but-et-non-depuis-lendroit-o%C3%B9-elle-avait-%C3%A9t%C3%A9-arr%C3%AAt%C3%A9e-pr%C3%A9c%C3%A9demment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.1.1) la méthode <strong>suppress()</strong> permet la suppression (l'arrêt) de l'action en cours d'exécution. Elle permet aussi de mettre à jour des données avant la fin de la tâche. Elle est appelée par l'<strong>Arbitrator</strong> sur la tâche en cours si la méthode <strong>takeControl()</strong> d'une tâche plus prioritaire retourne <strong>true</strong>. Si cette tâche arrêtée est réactivée plus tard durant l'exéction du programme, la méthode action sera exécutée depuis le début et non depuis l'endroit où elle avait été arrêtée précédemment.</h3>
 
 <p>Pour définir une tâche, il faut réaliser une implémentation de cette interface définissant ces trois méthodes. Il s'agit d'une forme de programmation événementielle : on fournit au système de contrôle du robot différentes tâches à exécuter lorsque différents événements surviennent. Par exemple, la tâche suivante effectue une manoeuvre lorsqu'un obstacle est détecté par le senseur à ultrasons (sonar) : </p>
 
@@ -250,9 +253,9 @@ Au lieu de cela, le package lejos.robotics.subsumption fournit une architecture 
 } </pre></div>
 
 <h2>
-<a id="53-créer-un-contrôleur" class="anchor" href="#53-cr%C3%A9er-un-contr%C3%B4leur" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.3) Créer un contrôleur</h2>
+<a id="52-créer-un-contrôleur" class="anchor" href="#52-cr%C3%A9er-un-contr%C3%B4leur" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.2) Créer un contrôleur</h2>
 
-<p>La classe <strong>Arbitrator</strong> permet de construire et d'activer un contrôleur par tâches. Son constructeur prend en paramètre un tableau contenant les tâches que le robot sera succeptible d'effectuer et que l'<strong>Arbitrator</strong> devra gérer. Les tâches doivent être ordonnées par ordre croissant de priorité. La méthode <strong>start()</strong> permet d'activer l'<strong>Arbitrator</strong>. </p>
+<p>La classe <strong>Arbitrator</strong> permet de construire et d'activer un contrôleur par tâche. Son constructeur prend en paramètre un tableau contenant les tâches que le robot sera succeptible d'effectuer et que l'<strong>Arbitrator</strong> devra gérer. Les tâches doivent être ordonnées par ordre croissant de priorité. La méthode <strong>start()</strong> permet d'activer l'<strong>Arbitrator</strong>. </p>
 
 <p>Exemple : </p>
 
@@ -266,14 +269,16 @@ Au lieu de cela, le package lejos.robotics.subsumption fournit une architecture 
 <span class="pl-smi">Arbitrator</span> arbitre <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">Arbitrator</span>(taches); 
 arbitre<span class="pl-k">.</span>start(); </pre></div>
 
-<p>Une tâche ne sera activée que si elle est plus prioritaire que la tâche en cours, et pourra être interrompue par une tâche plus prioritaire qu'elle. L'activation et l'interruption d'une tâche ne peut avoir lieu qu'au moment où la tâche en cours exécute une méthode non bloquante. Simultanément, le contrôleur évalue en permanence les méthodes <strong>takeControl()</strong> de la liste des tâches et initie la tâche la plus prioritaire pour laquelle <strong>takeControl()</strong> retourne <strong>true</strong>, en appelant au besoin suppress pour supprimer la tâche en cours (moins prioritaire). 
-Attention : le bon fonctionnement de ce mécanisme dépend du fait que la méthode action() de chaque tâche se termine rapidement lorsque <strong>suppress()</strong> est appelée. A tout moment, une seule tâche est activée ; une nouvelle tâche ne peut s'enclencher que lorsque la tâche en cours s'interrompt. Pour ce faire, le contrôleur appelle uniquement <strong>suppress()</strong> de la tâche en cours (moins prioritaire), puis appelle <strong>action()</strong> de la tâche à activer. Il ne peut pas forcer l'arrêt de l'exécution de action. Il est donc important de bien appliquer le mécanisme de suppression des tâches décrit précédemment. </p>
+<p>Une tâche ne sera activée que si elle est plus prioritaire que la tâche en cours, et pourra être interrompue par une tâche plus prioritaire qu'elle. L'activation et l'interruption d'une tâche ne peut avoir lieu qu'au moment où la tâche en cours exécute une méthode non bloquante. Simultanément, le contrôleur évalue en permanence les méthodes <strong>takeControl()</strong> de la liste des tâches et initie la tâche la plus prioritaire pour laquelle la méthode <strong>takeControl()</strong> retourne <strong>true</strong>, en appelant au besoin <strong>suppress()</strong> pour supprimer la tâche en cours (moins prioritaire). 
+Attention : le bon fonctionnement de ce mécanisme dépend du fait que la méthode action() de chaque tâche se termine rapidement lorsque la méthode <strong>suppress()</strong> est appelée. </p>
+
+<p>A tout moment, une seule tâche est activée ; une nouvelle tâche ne peut s'enclencher que lorsque la tâche en cours s'interrompt. Pour ce faire, le contrôleur appelle uniquement <strong>suppress()</strong> de la tâche en cours (moins prioritaire), puis appelle <strong>action()</strong> de la tâche à activer. Il ne peut pas forcer l'arrêt de l'exécution de action. Il est donc important de bien appliquer le mécanisme de suppression des tâches décrit précédemment. </p>
 
 <h1>
 <a id="6-remarques-et-conseils" class="anchor" href="#6-remarques-et-conseils" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6) Remarques et conseils:</h1>
 
 <p>Un exemple complet nommé <strong>SimpleController</strong>, dont sont tirés les extraits présentés ici, est disponible sur le site du cours d'informatique. Utilisez-le comme point de départ. 
-Respectez bien les recommandations concernant la synchronisation, pour éviter des problèmes de blocages et de conflits difficiles à diagnostiquer : </p>
+Respectez bien les recommandations concernant la synchronisation, pour éviter des problèmes de blocages et de conflits, difficiles à diagnostiquer : </p>
 
 <p>• Soyez attentifs à la différence entre méthodes bloquantes et non-bloquantes. </p>
 
@@ -281,19 +286,20 @@ Respectez bien les recommandations concernant la synchronisation, pour éviter d
 
 <p>• Utilisez une variable de synchronisation pour la suppression des tâches, et assurez-vous que vos tâches s'interrompent bien lorsque demandé. </p>
 
-<p>Il est prudent d'avoir comme tâche de plus haute priorité une tâche d'arrêt d'urgence conditionnée sur un bouton du robot (par exemple la tâche StopBehavior de l'exemple fourni). 
-Les senseurs, moteurs et pièces mécaniques appartiennent au domaine de la physique : leur précision peut donc varier, une étape de calibrage peut être nécessaire... </p>
+<p>Il est prudent d'avoir comme tâche de plus haute priorité une tâche d'arrêt d'urgence conditionnée sur un bouton du robot (par exemple la tâche StopBehavior de l'exemple fourni). </p>
+
+<p>Les senseurs, moteurs et pièces mécaniques appartiennent au domaine de la physique : leur précision peut donc varier, une étape de calibrage peut être nécessaire... </p>
 
 <h1>
 <a id="7-documentation-" class="anchor" href="#7-documentation-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>7) Documentation :</h1>
 
-<p>Ces documents sont disponibles ou référencés sur le site du cours d'informatique (FSAB1401). </p>
+<p>Ces documents sont disponibles, ou référencés, sur le site du cours d'informatique (FSAB1401). </p>
 
 <ol>
 <li><p>Manuel de l’utilisateur NXT (version Lego Minstorms Education). The Lego Group, 2006.  </p></li>
 <li><p><a href="http://lejos.sourceforge.net/nxt/nxj/tutorial/index.htm">The leJOS NXJ Tutorial.</a> </p></li>
 <li><p><a href="http://lejos.sourceforge.net/nxt/nxj/api/index.html">The leJOS NXJ API.</a> </p></li>
-<li><p>Pour un exemple complet, voir SimpleController sur Moodle </p></li>
+<li><p>Pour un exemple complet, voir le programme SimpleController sur Moodle </p></li>
 </ol>
       </section>
       <footer>
