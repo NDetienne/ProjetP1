@@ -1,31 +1,57 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <title>Projet P1 - Partie Informatique by NDetienne</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Projet P1 - Partie Informatique</h1>
-      <h2 class="project-tagline"></h2>
-      <a href="https://github.com/NDetienne/ProjetP1" class="btn">View on GitHub</a>
-      <a href="https://github.com/NDetienne/ProjetP1/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/NDetienne/ProjetP1/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <section class="main-content">
-      <h1>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Projet P1 - Partie Informatique by NDetienne</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Projet P1 - Partie Informatique</h1>
+        <h2></h2>
+        <a href="https://github.com/NDetienne/ProjetP1" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
 <a id="1-comment-programmer-son-robot" class="anchor" href="#1-comment-programmer-son-robot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1) Comment programmer son robot :</h1>
 
 <p>La librairie concernant le fonctionnement des robots Lego est détaillée à <a href="http://lejos.sourceforge.net/nxt/nxj/api/index.html">cette page</a>
 Celle-ci contient de nombreuses classes spécifiques aux fonctionnalités du NXT, groupées dans les packages dont le nom commence par « lejos » (n’oubliez pas les « import » correspondants dans votre programme !). Le présent document n'a pas pour but de détailler toutes les possibilités de ces classes, mais donne un aperçu succinct et partiel des possibilités offertes par ces classes et méthodes.</p>
 
-<p>Le constructeur de chacune de ces classes prend comme paramètre le SensorPort auquel le senseur est connecté. Chaque classe fournit une ou plusieurs méthodes permettant de lire la mesure du senseur correspondant. Exemple : </p>
+<h1>
+<a id="2-les-senseurs" class="anchor" href="#2-les-senseurs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2) Les senseurs</h1>
+
+<p>La classe <strong>lejos.nxt.SensorPort</strong> représente un un port d’entrée du NXT. Il y a quatre instances prédéfinies de la classe <strong>SensorPort</strong>, correspondant aux quatre ports d'entrée : <strong>SensorPort.S1</strong>, <strong>SensorPort.S2</strong>, <strong>SensorPort.S3</strong> et <strong>SensorPort.S4</strong>. 
+Il existe également une classe correspondant à chaque type de senseur : </p>
+
+<ul>
+<li>Capteur tactile : classe <strong>lejos.nxt.TouchSensor</strong>
+</li>
+<li>Capteur sonore : classe <strong>lejos.nxt.SoundSensor</strong>
+</li>
+<li>Capteur photosensible : classe <strong>lejos.nxt.LightSensor</strong>
+</li>
+<li>Capteur de distance à ultrasons : classe <strong>lejos.nxt.UltrasonicSensor</strong>
+</li>
+</ul>
+
+<p>Le constructeur de chacune de ces classes prend comme paramètre le <strong>SensorPort</strong> auquel le senseur est connecté. Chaque classe fournit une ou plusieurs méthodes permettant de lire la mesure du senseur correspondant. Exemple : </p>
 
 <div class="highlight highlight-source-java"><pre><span class="pl-k">import</span> <span class="pl-smi">lejos.nxt.*</span>; 
 <span class="pl-smi">UltrasonicSensor</span> sonic <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">UltrasonicSensor</span>(<span class="pl-smi">SensorPort</span><span class="pl-c1"><span class="pl-k">.</span>S1</span>); 
@@ -37,13 +63,32 @@ Celle-ci contient de nombreuses classes spécifiques aux fonctionnalités du NXT
              <span class="pl-c">// affiche la distance vue par le capteur à ultrasons </span>
 } </pre></div>
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/NDetienne/ProjetP1">Projet P1 - Partie Informatique</a> is maintained by <a href="https://github.com/NDetienne">NDetienne</a>.</span>
+<h1>
+<a id="3-les-moteurs" class="anchor" href="#3-les-moteurs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3) Les moteurs</h1>
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
+<p>La classe <strong>lejos.nxt.Motor</strong> permet d'accéder aux moteurs NXT. Elle fournit trois instances prédéfinies (de type <strong>NXTRegulatedMotor</strong>), correspondant aux trois ports de sortie du NXT : <strong>Motor.A</strong>,** Motor.B** et <strong>Motor.C</strong>.
+La classe <strong>NXTRegulatedMotor</strong> représente un moteur. La méthode <strong>setSpeed</strong> permet d’ajuster la vitesse du moteur. Les moteurs NXT sont équipés d’un capteur de rotation intégré (tachymètre) qui permet d’offrir une large palette de méthodes différentes. Les méthodes <strong>getTachoCount</strong> et <strong>resetTachoCount</strong> permettent de lire et de remettre à zéro le compteur de rotation. Les autres méthodes, telles que <strong>rotate</strong>, utilisent également ce compteur pour contrôler précisément le nombre de rotations du moteur. 
+Les mouvements du moteur s'effectuent à leur vitesse propre, distincte de (et beaucoup plus lente que) la vitesse d'exécution du programme Java. Il existe deux types de méthodes permettant de commander le mouvement du moteur. Il s'agit des <strong>méthodes bloquantes</strong> et des <strong>méthodes non-bloquantes</strong> : 
+• Pour une méthode bloquante, l'amplitude du mouvement (nombre de degrés, de tours, distance, ...) est pré-déterminée et la méthode attend jusqu'à la fin du mouvement (exemple : Motor.A.rotate(90)). Durant ce temps, l'exécution du programme est suspendue; il ne peut pas, par exemple, détecter un obstacle et arrêter prématurément le mouvement. 
+• Les méthodes bloquantes rotate et rotateTo font tourner le moteur d'un angle donné ou jusqu'à un angle donné. Lorsque la rotation demandée est terminée, le programme passe à l'instruction suivante. Exemple : </p>
+        </section>
 
-    </section>
+        <aside id="sidebar">
+          <a href="https://github.com/NDetienne/ProjetP1/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/NDetienne/ProjetP1/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/NDetienne/ProjetP1"></a> is maintained by <a href="https://github.com/NDetienne">NDetienne</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
 
   
   </body>
