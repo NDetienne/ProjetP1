@@ -31,8 +31,8 @@
           <h1>
 <a id="1-comment-programmer-son-robot" class="anchor" href="#1-comment-programmer-son-robot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1) Comment programmer son robot :</h1>
 
-<p>La librairie concernant le fonctionnement des robots Lego est détaillée à <a href="http://lejos.sourceforge.net/nxt/nxj/api/index.html">cette page</a>
-Celle-ci contient de nombreuses classes spécifiques aux fonctionnalités du NXT, groupées dans les packages dont le nom commence par « lejos » (n’oubliez pas les « import » correspondants dans votre programme !). Le présent document n'a pas pour but de détailler toutes les possibilités de ces classes, mais donne un aperçu succinct et partiel des possibilités offertes par ces classes et méthodes.</p>
+<p>La librairie concernant le fonctionnement des robots Lego est détaillée à <a href="http://lejos.sourceforge.net/nxt/nxj/api/index.html">cette page</a>.
+Celle-ci contient de nombreuses classes spécifiques aux fonctionnalités du NXT, groupées dans les packages dont le nom commence par « lejos » (n’oubliez pas les « import » correspondants dans votre programme !). Ce tutoriel n'a pas pour but de détailler toutes les possibilités de ces classes, mais donne un aperçu succinct et partiel des possibilités offertes par ces classes et méthodes.</p>
 
 <h1>
 <a id="2-les-senseurs-" class="anchor" href="#2-les-senseurs-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2) Les senseurs :</h1>
@@ -51,7 +51,9 @@ Il existe également une classe correspondant à chaque type de senseur : </p>
 </li>
 </ul>
 
-<p>Le constructeur de chacune de ces classes prend comme paramètre le <strong>SensorPort</strong> auquel le senseur est connecté. Chaque classe fournit une ou plusieurs méthodes permettant de lire la mesure du senseur correspondant. Exemple : </p>
+<p>Le constructeur de chacune de ces classes prend comme paramètre le <strong>SensorPort</strong> auquel le senseur est connecté. Chaque classe fournit une ou plusieurs méthodes permettant de lire la mesure du senseur correspondant. </p>
+
+<p>Exemple : </p>
 
 <div class="highlight highlight-source-java"><pre><span class="pl-k">import</span> <span class="pl-smi">lejos.nxt.*</span>; 
 <span class="pl-smi">UltrasonicSensor</span> sonic <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">UltrasonicSensor</span>(<span class="pl-smi">SensorPort</span><span class="pl-c1"><span class="pl-k">.</span>S1</span>); 
