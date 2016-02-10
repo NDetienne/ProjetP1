@@ -53,7 +53,7 @@ Il existe également une classe correspondant à chaque type de senseur : </p>
 
 <p>Le constructeur de chacune de ces classes prend comme paramètre le <strong>SensorPort</strong> auquel le senseur est connecté. Chaque classe fournit une ou plusieurs méthodes permettant de lire la mesure du senseur correspondant. </p>
 
-<p>Exemple : </p>
+<p>Exemple :</p>
 
 <div class="highlight highlight-source-java"><pre><span class="pl-k">import</span> <span class="pl-smi">lejos.nxt.*</span>; 
 <span class="pl-smi">UltrasonicSensor</span> sonic <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">UltrasonicSensor</span>(<span class="pl-smi">SensorPort</span><span class="pl-c1"><span class="pl-k">.</span>S1</span>); 
@@ -68,13 +68,17 @@ Il existe également une classe correspondant à chaque type de senseur : </p>
 <h1>
 <a id="3-les-moteurs-" class="anchor" href="#3-les-moteurs-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3) Les moteurs :</h1>
 
-<p>La classe <strong>lejos.nxt.Motor</strong> permet d'accéder aux moteurs NXT. Elle fournit trois instances prédéfinies (de type <strong>NXTRegulatedMotor</strong>), correspondant aux trois ports de sortie du NXT : <strong>Motor.A</strong>, ** Motor.B** et <strong>Motor.C</strong>.
+<p>La classe <strong>lejos.nxt.Motor</strong> permet d'accéder aux moteurs NXT. Elle fournit trois instances prédéfinies (de type <strong>NXTRegulatedMotor</strong>), correspondant aux trois ports de sortie du NXT : <strong>Motor.A</strong>, <strong>Motor.B</strong> et <strong>Motor.C</strong>.
 La classe <strong>NXTRegulatedMotor</strong> représente un moteur. La méthode <strong>setSpeed</strong> permet d’ajuster la vitesse du moteur. Les moteurs NXT sont équipés d’un capteur de rotation intégré (tachymètre) qui permet d’offrir une large palette de méthodes différentes. Les méthodes <strong>getTachoCount</strong> et <strong>resetTachoCount</strong> permettent de lire et de remettre à zéro le compteur de rotation. Les autres méthodes, telles que <strong>rotate</strong>, utilisent également ce compteur pour contrôler précisément le nombre de rotations du moteur. 
-Les mouvements du moteur s'effectuent à leur vitesse propre, distincte de (et beaucoup plus lente que) la vitesse d'exécution du programme Java. Il existe deux types de méthodes permettant de commander le mouvement du moteur. Il s'agit des <strong>méthodes bloquantes</strong> et des <strong>méthodes non-bloquantes</strong> : </p>
+Les mouvements du moteur s'effectuent à leur vitesse propre, distincte de (et beaucoup plus lente que) la vitesse d'exécution du programme Java. Il existe deux types de méthodes permettant de commander le mouvement du moteur. </p>
 
-<p>• Pour une méthode bloquante, l'amplitude du mouvement (nombre de degrés, de tours, distance, ...) est pré-déterminée et la méthode attend jusqu'à la fin du mouvement (exemple : Motor.A.rotate(90)). Durant ce temps, l'exécution du programme est suspendue; il ne peut pas, par exemple, détecter un obstacle et arrêter prématurément le mouvement. </p>
+<p>Il s'agit des <strong>méthodes bloquantes</strong> et des <strong>méthodes non-bloquantes</strong> : </p>
 
-<p>• Les méthodes bloquantes rotate et rotateTo font tourner le moteur d'un angle donné ou jusqu'à un angle donné. Lorsque la rotation demandée est terminée, le programme passe à l'instruction suivante. Exemple : </p>
+<p>• Pour une <strong>méthode bloquante</strong>, l'amplitude du mouvement (nombre de degrés, de tours, distance, ...) est pré-déterminée et la méthode attend jusqu'à la fin du mouvement (exemple : <strong>Motor.A.rotate(90)</strong>). Durant ce temps, l'exécution du programme est suspendue; il ne peut pas, par exemple, détecter un obstacle et arrêter prématurément le mouvement. </p>
+
+<p>Les <strong>méthodes bloquantes</strong> <strong>rotate</strong> et <strong>rotateTo</strong> font tourner le moteur d'un angle donné ou jusqu'à un angle donné. Lorsque la rotation demandée est terminée, le programme passe à l'instruction suivante. </p>
+
+<p>Exemple : </p>
 
 <div class="highlight highlight-source-java"><pre><span class="pl-k">import</span> <span class="pl-smi">lejos.nxt.*</span>; 
 <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>setSpeed(<span class="pl-c1">720</span>);  <span class="pl-c">// 2 rotations complètes par seconde.</span>
@@ -83,8 +87,10 @@ Les mouvements du moteur s'effectuent à leur vitesse propre, distincte de (et b
 <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>rotateTo(<span class="pl-c1">720</span>);  <span class="pl-c">// Faire tourner le moteur jusqu'à ce  // que le compteur atteigne 2 tours. </span>
 <span class="pl-k">int</span> angle <span class="pl-k">=</span> <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>getTachoCount();     <span class="pl-c">// Lire le compteur.</span></pre></div>
 
-<p>• Une méthode est non-bloquante lorsque la méthode démarre le mouvement et se termine immédiatement, alors que le mouvement se poursuit (exemple Motor.A.forward()). Le programme doit donc lui-même arrêter les moteurs en temps opportun, soit après un certain délai (Thread.sleep), soit lorsqu'une condition est vérifiée. En attendant, le programme doit absolument libérer le processeur (Thread.yield), pour permettre aux autres tâches de s'exécuter. 
-Les méthodes non-bloquantes forward et backward démarrent le moteur en marche avant ou arrière et passent tout de suite à l'instruction suivante. Les méthodes flt et stop permettent d'arrêter le moteur. stop empêche le moteur de tourner tandis que flt le laisse « flotter » librement. Exemple : </p>
+<p>• Une méthode est non-bloquante lorsque la méthode démarre le mouvement et se termine immédiatement, alors que le mouvement se poursuit (exemple <strong>Motor.A.forward()</strong>). Le programme doit donc lui-même arrêter les moteurs en temps opportun, soit après un certain délai (<strong>Thread.sleep</strong>), soit lorsqu'une condition est vérifiée. En attendant, le programme doit absolument libérer le processeur (<strong>Thread.yield</strong>), pour permettre aux autres tâches de s'exécuter. 
+Les méthodes non-bloquantes <strong>forward</strong> et <strong>backward</strong> démarrent le moteur en marche avant ou arrière et passent tout de suite à l'instruction suivante. Les méthodes <strong>flt</strong> et <strong>stop</strong> permettent d'arrêter le moteur. <strong>stop</strong> empêche le moteur de tourner tandis que <strong>flt</strong> le laisse « flotter » librement.</p>
+
+<p>Exemple : </p>
 
 <div class="highlight highlight-source-java"><pre><span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>resetTachoCount();  <span class="pl-c">// Remettre le compteur à zéro </span>
 <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>forward();          <span class="pl-c">// Démarrer le moteur en avant. </span>
@@ -97,7 +103,9 @@ Les méthodes non-bloquantes forward et backward démarrent le moteur en marche 
 } 
 <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>stop();             <span class="pl-c">// Arrêter de moteur. </span></pre></div>
 
-<p>Plusieurs méthodes bloquantes proposent une variante non-bloquante, comme par exemple rotate et rotateTo (voir ci-dessous). La méthode isMoving permet de tester si le moteur tourne toujours. Exemple : </p>
+<p>Plusieurs méthodes bloquantes proposent une variante non-bloquante, comme par exemple <strong>rotate</strong> et <strong>rotateTo</strong> (voir ci-dessous). La méthode <strong>isMoving</strong> permet de tester si le moteur tourne toujours.</p>
+
+<p>Exemple : </p>
 
 <div class="highlight highlight-source-java"><pre><span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>rotate(<span class="pl-c1">360</span><span class="pl-k">*</span><span class="pl-c1">10</span>, <span class="pl-c1">true</span>); <span class="pl-c">// Démarrer le moteur pour 10 tours. </span>
 <span class="pl-k">while</span> (<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>isMoving()) {    <span class="pl-c">// Tant que le moteur tourne... </span>
