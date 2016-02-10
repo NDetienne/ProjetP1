@@ -84,8 +84,8 @@ Les mouvements du moteur s'effectuent à leur vitesse propre, distincte de (et b
 <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>rotateTo(<span class="pl-c1">720</span>);   <span class="pl-c">// Faire tourner le moteur jusqu'à ce que le compteur atteigne 2 tours. </span>
 <span class="pl-k">int</span> angle <span class="pl-k">=</span> <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>getTachoCount();  <span class="pl-c">//Lire le compteur.</span></pre></div>
 
-<p>• Une méthode est <strong>non-bloquante</strong> lorsque la méthode démarre le mouvement et se termine immédiatement, alors que le mouvement se poursuit (exemple <strong>Motor.A.forward()</strong>). Le programme doit donc lui-même arrêter les moteurs en temps opportun, soit après un certain délai (<strong>Thread.sleep</strong>), soit lorsqu'une condition est vérifiée. En attendant, le programme doit absolument libérer le processeur (<strong>Thread.yield</strong>), pour permettre aux autres tâches de s'exécuter. 
-Les méthodes non-bloquantes <strong>forward</strong> et <strong>backward</strong> démarrent le moteur en marche avant ou arrière et passent tout de suite à l'instruction suivante. Les méthodes <strong>flt</strong> et <strong>stop</strong> permettent d'arrêter le moteur. <strong>stop</strong> empêche le moteur de tourner tandis que <strong>flt</strong> le laisse « flotter » librement.</p>
+<p>• Une méthode est <strong>non-bloquante</strong> lorsque la méthode démarre le mouvement et se termine immédiatement, alors que le mouvement se poursuit (exemple <strong>Motor.A.forward()</strong>). Le programme doit donc lui-même arrêter les moteurs en temps opportun, soit après un certain délai (<strong>Thread.sleep(xx)</strong>), soit lorsqu'une condition est vérifiée. En attendant, le programme doit absolument libérer le processeur (<strong>Thread.yield()</strong>), pour permettre aux autres tâches de s'exécuter. 
+Les méthodes non-bloquantes <strong>forward()</strong> et <strong>backward()</strong> démarrent le moteur en marche avant ou arrière et passent tout de suite à l'instruction suivante. Les méthodes <strong>flt()</strong> et <strong>stop()</strong> permettent d'arrêter le moteur. <strong>stop()</strong> empêche le moteur de tourner tandis que <strong>flt()</strong> le laisse « flotter » librement.</p>
 
 <p>Exemple : </p>
 
@@ -99,7 +99,7 @@ Les méthodes non-bloquantes <strong>forward</strong> et <strong>backward</stron
 } 
 <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>stop();                 <span class="pl-c">// Arrêter de moteur. </span></pre></div>
 
-<p>Plusieurs méthodes bloquantes proposent une variante non-bloquante, comme par exemple <strong>rotate</strong> et <strong>rotateTo</strong> (voir ci-dessous). La méthode <strong>isMoving</strong> permet de tester si le moteur tourne toujours.</p>
+<p>Plusieurs méthodes bloquantes proposent une variante non-bloquante, comme par exemple <strong>rotate()</strong> et <strong>rotateTo()</strong> (voir ci-dessous). La méthode <strong>isMoving()</strong> permet de tester si le moteur tourne toujours.</p>
 
 <p>Exemple : </p>
 
@@ -126,7 +126,7 @@ Les constructeurs permettent de déclarer la géométrie du châssis. Les param�
 pilot<span class="pl-k">.</span>setTravelSpeed(<span class="pl-c1">10</span>);        <span class="pl-c">// Vitesse du robot = 10 cm/s. </span>
 pilot<span class="pl-k">.</span>setRotateSpeed(<span class="pl-c1">45</span>);        <span class="pl-c">// Vitesse de pivotage = 45 degrés/s. </span></pre></div>
 
-<p>Les méthodes (bloquantes) <strong>travel</strong>, <strong>travelArc</strong> et <strong>rotate</strong> permettent ensuite de faire se déplacer le robot en ligne droite, selon un arc de cercle ou de le faire pivoter sur lui même. </p>
+<p>Les méthodes (bloquantes) <strong>travel(xx)</strong>, <strong>travelArc(xx)</strong> et <strong>rotate(xx)</strong> permettent ensuite de faire se déplacer le robot en ligne droite, selon un arc de cercle ou de le faire pivoter sur lui même. </p>
 
 <p>Exemple : </p>
 
@@ -136,7 +136,7 @@ pilot<span class="pl-k">.</span>travel(<span class="pl-k">-</span><span class="p
 pilot<span class="pl-k">.</span>travelArc(<span class="pl-c1">10</span>, <span class="pl-c1">12</span>);         <span class="pl-c">// Faire un virage à gauche de 12 cm de long selon un rayon de 10 cm.</span>
 pilot<span class="pl-k">.</span>arc(<span class="pl-k">-</span><span class="pl-c1">10</span>, <span class="pl-c1">90</span>);              <span class="pl-c">// Faire un virage à droite de 90 degrés selon un rayon de 10 cm.</span></pre></div>
 
-<p>Les méthodes (non-bloquantes) <strong>forward</strong>, <strong>backward</strong>, <strong>arcForward</strong>, <strong>arcBackward</strong> et <strong>stop</strong> permettent de démarrer et d'arrêter le robot pour une durée indéterminée.</p>
+<p>Les méthodes (non-bloquantes) <strong>forward()</strong>, <strong>backward()</strong>, <strong>arcForward()</strong>, <strong>arcBackward()</strong> et <strong>stop()</strong> permettent de démarrer et d'arrêter le robot pour une durée indéterminée.</p>
 
 <p>Exemple :</p>
 
@@ -167,11 +167,11 @@ Au lieu de cela, le package lejos.robotics.subsumption fournit une architecture 
 
 <p>Chaque tâche est définie par trois éléments, spécifiés par trois méthodes de l'interface Behavior : </p>
 
-<p>• la méthode takeControl fournit la condition d'activation qui détermine quand cette tâche doit être initiée. On peut vouloir qu'une action soit activée si un obstacle se trouve à moins de 25cm (voir exemple ci-dessous), ou si le capteur de tactile est pressé. On peut également vérifier des conditions multiples. Exemple : La tâche est activée si, à la fois le capteur photosensible détecte une ligne noire, ET si la valeur booléenne d'une variable est à true. Pour que la tâche soit activée, il faut que la valeur retournée par la méthode takecontrol() soit true. </p>
+<p>• la méthode <strong>takeControl()</strong> fournit la condition d'activation qui détermine quand cette tâche doit être initiée. On peut vouloir qu'une action soit activée si un obstacle se trouve à moins de 25cm (voir exemple ci-dessous), ou si le capteur de tactile est pressé. On peut également vérifier des conditions multiples. Exemple : La tâche est activée si, à la fois le capteur photosensible détecte une ligne noire, ET si la valeur booléenne d'une variable est à true. Pour que la tâche soit activée, il faut que la valeur retournée par la méthode <strong>takecontrol()</strong> soit <strong>true</strong>. </p>
 
-<p>• la méthode action définit l'action que cette tâche doit accomplire (voir exemple ci-dessous). Cette méthode est appelée dès que la tâche devient active. </p>
+<p>• la méthode <strong>action()</strong> définit l'action que cette tâche doit accomplire (voir exemple ci-dessous). Cette méthode est appelée dès que la tâche devient active. </p>
 
-<p>• la méthode suppress permet la suppression (l'arrêt) de l'action en cours d'exécution. Elle permet aussi de mettre à jour des données avant la fin de la tâche. Elle est appelée par l'Arbitrator sur la tâche en cours si la méthode takeControl()d'une tâche plus prioritaire retourne true. Si cette tâche arrêtée est réactivée plus tard durant l'exéction du programme, la méthode action sera exécutée depuis le début et non depuis l'endroit où elle avait été arrêtée précédemment.  </p>
+<p>• la méthode <strong>suppress()</strong> permet la suppression (l'arrêt) de l'action en cours d'exécution. Elle permet aussi de mettre à jour des données avant la fin de la tâche. Elle est appelée par l'<strong>Arbitrator</strong> sur la tâche en cours si la méthode <strong>takeControl()</strong> d'une tâche plus prioritaire retourne <strong>true</strong>. Si cette tâche arrêtée est réactivée plus tard durant l'exéction du programme, la méthode action sera exécutée depuis le début et non depuis l'endroit où elle avait été arrêtée précédemment.  </p>
 
 <p>Pour définir une tâche, il faut réaliser une implémentation de cette interface définissant ces trois méthodes. Il s'agit d'une forme de programmation événementielle : on fournit au système de contrôle du robot différentes tâches à exécuter lorsque différents événements surviennent. Par exemple, la tâche suivante effectue une manoeuvre lorsqu'un obstacle est détecté par le senseur à ultrasons (sonar) : </p>
 
@@ -207,11 +207,13 @@ Au lieu de cela, le package lejos.robotics.subsumption fournit une architecture 
 
 <p>Attention au mécanisme de suppression de tâche ! La méthode suppress est exécutée alors que la méthode action est elle-même toujours en cours d'exécution. Elle n'arrête pas simplement la tâche en cours; au lieu de cela, elle doit signaler à la méthode action que celle-ci doit d'elle-même interrompre son activité. Pour assurer cette synchronisation, on utilise une variable d'instance suppressed comme suit : </p>
 
-<p>• La méthode action met la variable suppressed à false initialement, </p>
+<p>• La méthode <strong>action()</strong> met la variable suppressed à false initialement, </p>
 
-<p>• La méthode suppress, lorsqu'elle est appelée, met la variable suppressed à true, </p>
+<p>• La méthode <strong>suppress()</strong>, lorsqu'elle est appelée, met la variable suppressed à true, </p>
 
-<p>• La méthode action  surveille continuellement la variable suppressed via la condition de boucle. Si la variable suppressed devient true (indiquant que la méthode suppress a été exécutée), le mouvement en cours est interrompu (pilote.stop()) et la méthode retourne immédiatement. La méthode doit donc utiliser des méthodes non-bloquantes sous peine d'ajouter un délai avant la prise en compte du passage de la variable à true. </p>
+<p>• La méthode <strong>action()</strong> surveille continuellement la variable suppressed via la condition de boucle. </p>
+
+<p>Si la variable <strong>suppressed</strong> devient <strong>true</strong> (indiquant que la méthode suppress a été exécutée), le mouvement en cours est interrompu (pilote.stop()) et la méthode retourne immédiatement. La méthode doit donc utiliser des méthodes non-bloquantes sous peine d'ajouter un délai avant la prise en compte du passage de la variable à true. </p>
 
 <p>La suppression (interruption) de la tâche n'est nécessaire que si action perdure dans le temps ; si elle se termine immédiatement il n'est pas nécessaire de mettre en place un mécanisme pour la supprimer. Par exemple, l'action de la tâche suivante quittant immédiatement le programme il est inutile de prévoir sa suppression. </p>
 
@@ -239,7 +241,7 @@ Au lieu de cela, le package lejos.robotics.subsumption fournit une architecture 
 <h2>
 <a id="53-créer-un-contrôleur" class="anchor" href="#53-cr%C3%A9er-un-contr%C3%B4leur" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.3) Créer un contrôleur</h2>
 
-<p>La classe Arbitrator permet de construire et d'activer un contrôleur par tâches. Son constructeur prend en paramètre un tableau contenant les tâches que le robot sera succeptible d'effectuer et que l'Arbitrator devra gérer. Les tâches doivent être ordonnées par ordre croissant de priorité. La méthode start() permet d'activer l'Arbitrator. </p>
+<p>La classe <strong>Arbitrator</strong> permet de construire et d'activer un contrôleur par tâches. Son constructeur prend en paramètre un tableau contenant les tâches que le robot sera succeptible d'effectuer et que l'<strong>Arbitrator</strong> devra gérer. Les tâches doivent être ordonnées par ordre croissant de priorité. La méthode <strong>start()</strong> permet d'activer l'<strong>Arbitrator</strong>. </p>
 
 <p>Exemple : </p>
 
@@ -253,13 +255,13 @@ Au lieu de cela, le package lejos.robotics.subsumption fournit une architecture 
 <span class="pl-smi">Arbitrator</span> arbitre <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">Arbitrator</span>(taches); 
 arbitre<span class="pl-k">.</span>start(); </pre></div>
 
-<p>Une tâche ne sera activée que si elle est plus prioritaire que la tâche en cours, et pourra être interrompue par une tâche plus prioritaire qu'elle. L'activation et l'interruption d'une tâche ne peut avoir lieu qu'au moment où la tâche en cours exécute une méthode non bloquante. Simultanément, le contrôleur évalue en permanence les méthodes takeControl() de la liste des tâches et initie la tâche la plus prioritaire pour laquelle takeControl() retourne true, en appelant au besoin suppress pour supprimer la tâche en cours (moins prioritaire). 
-Attention : le bon fonctionnement de ce mécanisme dépend du fait que la méthode action() de chaque tâche se termine rapidement lorsque suppress() est appelée. A tout moment, une seule tâche est activée ; une nouvelle tâche ne peut s'enclencher que lorsque la tâche en cours s'interrompt. Pour ce faire, le contrôleur appelle uniquement suppress() de la tâche en cours (moins prioritaire), puis appelle action() de la tâche à activer. Il ne peut pas forcer l'arrêt de l'exécution de action. Il est donc important de bien appliquer le mécanisme de suppression des tâches décrit précédemment. </p>
+<p>Une tâche ne sera activée que si elle est plus prioritaire que la tâche en cours, et pourra être interrompue par une tâche plus prioritaire qu'elle. L'activation et l'interruption d'une tâche ne peut avoir lieu qu'au moment où la tâche en cours exécute une méthode non bloquante. Simultanément, le contrôleur évalue en permanence les méthodes <strong>takeControl()</strong> de la liste des tâches et initie la tâche la plus prioritaire pour laquelle <strong>takeControl()</strong> retourne <strong>true</strong>, en appelant au besoin suppress pour supprimer la tâche en cours (moins prioritaire). 
+Attention : le bon fonctionnement de ce mécanisme dépend du fait que la méthode action() de chaque tâche se termine rapidement lorsque <strong>suppress()</strong> est appelée. A tout moment, une seule tâche est activée ; une nouvelle tâche ne peut s'enclencher que lorsque la tâche en cours s'interrompt. Pour ce faire, le contrôleur appelle uniquement <strong>suppress()</strong> de la tâche en cours (moins prioritaire), puis appelle <strong>action()</strong> de la tâche à activer. Il ne peut pas forcer l'arrêt de l'exécution de action. Il est donc important de bien appliquer le mécanisme de suppression des tâches décrit précédemment. </p>
 
 <h1>
 <a id="6-remarques-et-conseils" class="anchor" href="#6-remarques-et-conseils" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6) Remarques et conseils:</h1>
 
-<p>Un exemple complet nommé SimpleController, dont sont tirés les extraits présentés ici, est disponible sur le site du cours d'informatique. Utilisez-le comme point de départ. 
+<p>Un exemple complet nommé <strong>SimpleController</strong>, dont sont tirés les extraits présentés ici, est disponible sur le site du cours d'informatique. Utilisez-le comme point de départ. 
 Respectez bien les recommandations concernant la synchronisation, pour éviter des problèmes de blocages et de conflits difficiles à diagnostiquer : </p>
 
 <p>• Soyez attentifs à la différence entre méthodes bloquantes et non-bloquantes. </p>
