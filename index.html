@@ -87,65 +87,67 @@ Les mouvements du moteur s'effectuent à leur vitesse propre, distincte de (et b
 <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>rotateTo(<span class="pl-c1">720</span>);  <span class="pl-c">// Faire tourner le moteur jusqu'à ce  // que le compteur atteigne 2 tours. </span>
 <span class="pl-k">int</span> angle <span class="pl-k">=</span> <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>getTachoCount();     <span class="pl-c">// Lire le compteur.</span></pre></div>
 
-<p>• Une méthode est non-bloquante lorsque la méthode démarre le mouvement et se termine immédiatement, alors que le mouvement se poursuit (exemple <strong>Motor.A.forward()</strong>). Le programme doit donc lui-même arrêter les moteurs en temps opportun, soit après un certain délai (<strong>Thread.sleep</strong>), soit lorsqu'une condition est vérifiée. En attendant, le programme doit absolument libérer le processeur (<strong>Thread.yield</strong>), pour permettre aux autres tâches de s'exécuter. 
+<p>• Une méthode est <strong>non-bloquante</strong> lorsque la méthode démarre le mouvement et se termine immédiatement, alors que le mouvement se poursuit (exemple <strong>Motor.A.forward()</strong>). Le programme doit donc lui-même arrêter les moteurs en temps opportun, soit après un certain délai (<strong>Thread.sleep</strong>), soit lorsqu'une condition est vérifiée. En attendant, le programme doit absolument libérer le processeur (<strong>Thread.yield</strong>), pour permettre aux autres tâches de s'exécuter. 
 Les méthodes non-bloquantes <strong>forward</strong> et <strong>backward</strong> démarrent le moteur en marche avant ou arrière et passent tout de suite à l'instruction suivante. Les méthodes <strong>flt</strong> et <strong>stop</strong> permettent d'arrêter le moteur. <strong>stop</strong> empêche le moteur de tourner tandis que <strong>flt</strong> le laisse « flotter » librement.</p>
 
 <p>Exemple : </p>
 
-<div class="highlight highlight-source-java"><pre><span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>resetTachoCount();  <span class="pl-c">// Remettre le compteur à zéro </span>
-<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>forward();          <span class="pl-c">// Démarrer le moteur en avant. </span>
-<span class="pl-smi">Thread</span><span class="pl-k">.</span>sleep(<span class="pl-c1">1000</span>);         <span class="pl-c">// Attendre 1 seconde tout en roulant </span>
-<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>stop();             <span class="pl-c">// Arrêter de moteur. </span>
-<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>backward();         <span class="pl-c">// Démarrer le moteur en arrière. </span>
-<span class="pl-k">while</span> (<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>getTachoCount() <span class="pl-k">&gt;</span> <span class="pl-c1">0</span>) {   
-                <span class="pl-c">// Tant que le compteur ne revient pas à 0... </span>
-         <span class="pl-smi">Thread</span><span class="pl-k">.</span>yield();    <span class="pl-c">// Libérer le processeur. </span>
+<div class="highlight highlight-source-java"><pre><span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>resetTachoCount();       <span class="pl-c">// Remettre le compteur à zéro </span>
+<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>forward();              <span class="pl-c">// Démarrer le moteur en avant. </span>
+<span class="pl-smi">Thread</span><span class="pl-k">.</span>sleep(<span class="pl-c1">1000</span>);             <span class="pl-c">// Attendre 1 seconde tout en roulant </span>
+<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>stop();                 <span class="pl-c">// Arrêter de moteur. </span>
+<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>backward();             <span class="pl-c">// Démarrer le moteur en arrière. </span>
+<span class="pl-k">while</span> (<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>getTachoCount() <span class="pl-k">&gt;</span> <span class="pl-c1">0</span>) {  <span class="pl-c">// Tant que le compteur ne revient pas à 0... </span>
+         <span class="pl-smi">Thread</span><span class="pl-k">.</span>yield();        <span class="pl-c">// Libérer le processeur. </span>
 } 
-<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>stop();             <span class="pl-c">// Arrêter de moteur. </span></pre></div>
+<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>stop();                 <span class="pl-c">// Arrêter de moteur. </span></pre></div>
 
 <p>Plusieurs méthodes bloquantes proposent une variante non-bloquante, comme par exemple <strong>rotate</strong> et <strong>rotateTo</strong> (voir ci-dessous). La méthode <strong>isMoving</strong> permet de tester si le moteur tourne toujours.</p>
 
 <p>Exemple : </p>
 
 <div class="highlight highlight-source-java"><pre><span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>rotate(<span class="pl-c1">360</span><span class="pl-k">*</span><span class="pl-c1">10</span>, <span class="pl-c1">true</span>); <span class="pl-c">// Démarrer le moteur pour 10 tours. </span>
-<span class="pl-k">while</span> (<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>isMoving()) {    <span class="pl-c">// Tant que le moteur tourne... </span>
-      <span class="pl-k">int</span> angle <span class="pl-k">=</span> <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>getTachoCount();  <span class="pl-c">// Lire le compteur... </span>
-      <span class="pl-c1">LCD</span><span class="pl-k">.</span>drawInt(angle,<span class="pl-c1">0</span>,<span class="pl-c1">0</span>);           <span class="pl-c">// et l'afficher. </span>
+<span class="pl-k">while</span> (<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>isMoving()) {  <span class="pl-c">// Tant que le moteur tourne... </span>
+      <span class="pl-k">int</span> angle <span class="pl-k">=</span> <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>getTachoCount();      <span class="pl-c">// Lire le compteur... </span>
+      <span class="pl-c1">LCD</span><span class="pl-k">.</span>drawInt(angle,<span class="pl-c1">0</span>,<span class="pl-c1">0</span>);                  <span class="pl-c">// et l'afficher. </span>
 } </pre></div>
 
 <h1>
 <a id="4-pilotage-dun-robot-roulant-" class="anchor" href="#4-pilotage-dun-robot-roulant-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4) Pilotage d'un robot roulant :</h1>
 
-<p>La classe lejos.robotics.navigation.DifferentialPilot permet de piloter un robot roulant avec deux roues sur un même axe contrôlées par deux moteurs séparés (châssis de type « chaise roulante ») et une roue libre dite « folle »: 
-Les constructeurs permettent de déclarer la géométrie du châssis. Les paramètres de distance peuvent être dans une unité quelconque, pourvu que cette unité soit la même dans tout le programme. Exemple (pour un robot dont les roues gauche et droite sont sur les moteurs A et C) : </p>
+<p>La classe <strong>lejos.robotics.navigation.DifferentialPilot</strong> permet de piloter un robot roulant avec deux roues sur un même axe contrôlées par deux moteurs séparés (châssis de type « chaise roulante ») et une roue libre dite « folle »: 
+Les constructeurs permettent de déclarer la géométrie du châssis. Les paramètres de distance peuvent être dans une unité quelconque, pourvu que cette unité soit la même dans tout le programme.</p>
+
+<p>Exemple (pour un robot dont les roues gauche et droite sont sur les moteurs A et C) : </p>
 
 <div class="highlight highlight-source-java"><pre><span class="pl-k">import</span> <span class="pl-smi">lejos.nxt.*</span>; 
 <span class="pl-k">import</span> <span class="pl-smi">lejos.robotics.navigation.*</span>; 
 
-<span class="pl-k">final</span> <span class="pl-k">double</span> <span class="pl-c1">DIAM_ROUE</span> <span class="pl-k">=</span> <span class="pl-c1">2.1f</span>; <span class="pl-c">// Diamètre des roues motrices en   // cm</span>
-<span class="pl-k">final</span> <span class="pl-k">double</span> <span class="pl-c1">DIST_ROUE</span> <span class="pl-k">=</span> <span class="pl-c1">4.4f</span>; <span class="pl-c">// Distance entre les roues </span>
-    <span class="pl-c">// motrices en cm</span>
+<span class="pl-k">final</span> <span class="pl-k">double</span> <span class="pl-c1">DIAM_ROUE</span> <span class="pl-k">=</span> <span class="pl-c1">2.1f</span>;   <span class="pl-c">// Diamètre des roues motrices en cm</span>
+<span class="pl-k">final</span> <span class="pl-k">double</span> <span class="pl-c1">DIST_ROUE</span> <span class="pl-k">=</span> <span class="pl-c1">4.4f</span>;   <span class="pl-c">// Distance entre les roues motrices en cm</span>
 <span class="pl-smi">DifferentialPilot</span> pilot <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">DifferentialPilot</span>(<span class="pl-c1">DIAM_ROUE</span>, <span class="pl-c1">DIST_ROUE</span>, <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span>, <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">C</span>); 
-pilot<span class="pl-k">.</span>setTravelSpeed(<span class="pl-c1">10</span>);   <span class="pl-c">// Vitesse du robot = 10 cm/s. </span>
-pilot<span class="pl-k">.</span>setRotateSpeed(<span class="pl-c1">45</span>);   <span class="pl-c">// Vitesse de pivotage = 45         // degrés/s. </span></pre></div>
+pilot<span class="pl-k">.</span>setTravelSpeed(<span class="pl-c1">10</span>);        <span class="pl-c">// Vitesse du robot = 10 cm/s. </span>
+pilot<span class="pl-k">.</span>setRotateSpeed(<span class="pl-c1">45</span>);        <span class="pl-c">// Vitesse de pivotage = 45 degrés/s. </span></pre></div>
 
-<p>Les méthodes (bloquantes) travel, travelArc et rotate permettent ensuite de faire se déplacer le robot en ligne droite, selon un arc de cercle ou de le faire pivoter sur lui même. 
-Exemple : </p>
+<p>Les méthodes (bloquantes) <strong>travel</strong>, <strong>travelArc</strong> et <strong>rotate</strong> permettent ensuite de faire se déplacer le robot en ligne droite, selon un arc de cercle ou de le faire pivoter sur lui même. </p>
 
-<div class="highlight highlight-source-java"><pre>pilot<span class="pl-k">.</span>travel(<span class="pl-c1">12</span>);       <span class="pl-c">// Avancer de 12 cm.</span>
-pilot<span class="pl-k">.</span>rotate(<span class="pl-k">-</span><span class="pl-c1">90</span>);      <span class="pl-c">// Pivoter de 90 degrés vers la gauche.</span>
-pilot<span class="pl-k">.</span>travel(<span class="pl-k">-</span><span class="pl-c1">12</span>);      <span class="pl-c">// Reculer de 12 cm.</span>
-pilot<span class="pl-k">.</span>travelArc(<span class="pl-c1">10</span>, <span class="pl-c1">12</span>);    <span class="pl-c">// Faire un virage à gauche de 12 cm de                    // long selon un rayon de 10 cm.</span>
-pilot<span class="pl-k">.</span>arc(<span class="pl-k">-</span><span class="pl-c1">10</span>, <span class="pl-c1">90</span>);     <span class="pl-c">// Faire un virage à droite de 90 degrés                  // selon un rayon de 10 cm.</span></pre></div>
+<p>Exemple : </p>
 
-<p>Les méthodes (non-bloquantes) forward, backward, arcForward, arcBackward et stop permettent de démarrer et d'arrêter le robot pour une durée indéterminée. 
-Exemple :</p>
+<div class="highlight highlight-source-java"><pre>pilot<span class="pl-k">.</span>travel(<span class="pl-c1">12</span>);                <span class="pl-c">// Avancer de 12 cm.</span>
+pilot<span class="pl-k">.</span>rotate(<span class="pl-k">-</span><span class="pl-c1">90</span>);               <span class="pl-c">// Pivoter de 90 degrés vers la gauche.</span>
+pilot<span class="pl-k">.</span>travel(<span class="pl-k">-</span><span class="pl-c1">12</span>);               <span class="pl-c">// Reculer de 12 cm.</span>
+pilot<span class="pl-k">.</span>travelArc(<span class="pl-c1">10</span>, <span class="pl-c1">12</span>);         <span class="pl-c">// Faire un virage à gauche de 12 cm de long selon un rayon de 10 cm.</span>
+pilot<span class="pl-k">.</span>arc(<span class="pl-k">-</span><span class="pl-c1">10</span>, <span class="pl-c1">90</span>);              <span class="pl-c">// Faire un virage à droite de 90 degrés selon un rayon de 10 cm.</span></pre></div>
+
+<p>Les méthodes (non-bloquantes) <strong>forward</strong>, <strong>backward</strong>, <strong>arcForward</strong>, <strong>arcBackward</strong> et <strong>stop</strong> permettent de démarrer et d'arrêter le robot pour une durée indéterminée.</p>
+
+<p>Exemple :</p>
 
 <div class="highlight highlight-source-java"><pre>pilot<span class="pl-k">.</span>forward();        <span class="pl-c">// Avancer en ligne droite indéfiniment. </span>
-<span class="pl-k">while</span>(<span class="pl-k">!</span><span class="pl-smi">Button</span><span class="pl-c1"><span class="pl-k">.</span>ENTER</span><span class="pl-k">.</span>isDown()) { <span class="pl-c">// Tant que le bouton orange                                // n'est pas pressé... </span>
-       <span class="pl-smi">Thread</span><span class="pl-k">.</span>yield();          <span class="pl-c">// Libérer le processeur. </span>
+<span class="pl-k">while</span>(<span class="pl-k">!</span><span class="pl-smi">Button</span><span class="pl-c1"><span class="pl-k">.</span>ENTER</span><span class="pl-k">.</span>isDown()) { <span class="pl-c">// Tant que le bouton orange n'est pas pressé...</span>
+       <span class="pl-smi">Thread</span><span class="pl-k">.</span>yield();           <span class="pl-c">// Libérer le processeur. </span>
 } 
-pilot<span class="pl-k">.</span>stop();                   <span class="pl-c">// Arrêter le robot. </span></pre></div>
+pilot<span class="pl-k">.</span>stop();           <span class="pl-c">// Arrêter le robot. </span></pre></div>
 
 <h1>
 <a id="5-contrôle-par-tâches-" class="anchor" href="#5-contr%C3%B4le-par-t%C3%A2ches-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5) Contrôle par tâches :</h1>
