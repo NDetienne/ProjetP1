@@ -35,7 +35,7 @@
 Celle-ci contient de nombreuses classes spécifiques aux fonctionnalités du NXT, groupées dans les packages dont le nom commence par « lejos » (n’oubliez pas les « import » correspondants dans votre programme !). Le présent document n'a pas pour but de détailler toutes les possibilités de ces classes, mais donne un aperçu succinct et partiel des possibilités offertes par ces classes et méthodes.</p>
 
 <h1>
-<a id="2-les-senseurs" class="anchor" href="#2-les-senseurs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2) Les senseurs</h1>
+<a id="2-les-senseurs-" class="anchor" href="#2-les-senseurs-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2) Les senseurs :</h1>
 
 <p>La classe <strong>lejos.nxt.SensorPort</strong> représente un un port d’entrée du NXT. Il y a quatre instances prédéfinies de la classe <strong>SensorPort</strong>, correspondant aux quatre ports d'entrée : <strong>SensorPort.S1</strong>, <strong>SensorPort.S2</strong>, <strong>SensorPort.S3</strong> et <strong>SensorPort.S4</strong>. 
 Il existe également une classe correspondant à chaque type de senseur : </p>
@@ -64,13 +64,197 @@ Il existe également une classe correspondant à chaque type de senseur : </p>
 } </pre></div>
 
 <h1>
-<a id="3-les-moteurs" class="anchor" href="#3-les-moteurs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3) Les moteurs</h1>
+<a id="3-les-moteurs-" class="anchor" href="#3-les-moteurs-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3) Les moteurs :</h1>
 
 <p>La classe <strong>lejos.nxt.Motor</strong> permet d'accéder aux moteurs NXT. Elle fournit trois instances prédéfinies (de type <strong>NXTRegulatedMotor</strong>), correspondant aux trois ports de sortie du NXT : <strong>Motor.A</strong>,** Motor.B** et <strong>Motor.C</strong>.
 La classe <strong>NXTRegulatedMotor</strong> représente un moteur. La méthode <strong>setSpeed</strong> permet d’ajuster la vitesse du moteur. Les moteurs NXT sont équipés d’un capteur de rotation intégré (tachymètre) qui permet d’offrir une large palette de méthodes différentes. Les méthodes <strong>getTachoCount</strong> et <strong>resetTachoCount</strong> permettent de lire et de remettre à zéro le compteur de rotation. Les autres méthodes, telles que <strong>rotate</strong>, utilisent également ce compteur pour contrôler précisément le nombre de rotations du moteur. 
 Les mouvements du moteur s'effectuent à leur vitesse propre, distincte de (et beaucoup plus lente que) la vitesse d'exécution du programme Java. Il existe deux types de méthodes permettant de commander le mouvement du moteur. Il s'agit des <strong>méthodes bloquantes</strong> et des <strong>méthodes non-bloquantes</strong> : 
 • Pour une méthode bloquante, l'amplitude du mouvement (nombre de degrés, de tours, distance, ...) est pré-déterminée et la méthode attend jusqu'à la fin du mouvement (exemple : Motor.A.rotate(90)). Durant ce temps, l'exécution du programme est suspendue; il ne peut pas, par exemple, détecter un obstacle et arrêter prématurément le mouvement. 
 • Les méthodes bloquantes rotate et rotateTo font tourner le moteur d'un angle donné ou jusqu'à un angle donné. Lorsque la rotation demandée est terminée, le programme passe à l'instruction suivante. Exemple : </p>
+
+<div class="highlight highlight-source-java"><pre><span class="pl-k">import</span> <span class="pl-smi">lejos.nxt.*</span>; 
+<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>setSpeed(<span class="pl-c1">720</span>);  <span class="pl-c">// 2 rotations complètes par seconde.</span>
+<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>resetTachoCount(); <span class="pl-c">// Remettre le compteur à zéro</span>
+<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>rotate(<span class="pl-c1">90</span>);     <span class="pl-c">// Faire tourner le moteur d'1/4 tour.</span>
+<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>rotateTo(<span class="pl-c1">720</span>);  <span class="pl-c">// Faire tourner le moteur jusqu'à ce  // que le compteur atteigne 2 tours. </span>
+<span class="pl-k">int</span> angle <span class="pl-k">=</span> <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>getTachoCount();     <span class="pl-c">// Lire le compteur.</span></pre></div>
+
+<p>• Une méthode est non-bloquante lorsque la méthode démarre le mouvement et se termine immédiatement, alors que le mouvement se poursuit (exemple Motor.A.forward()). Le programme doit donc lui-même arrêter les moteurs en temps opportun, soit après un certain délai (Thread.sleep), soit lorsqu'une condition est vérifiée. En attendant, le programme doit absolument libérer le processeur (Thread.yield), pour permettre aux autres tâches de s'exécuter. 
+Les méthodes non-bloquantes forward et backward démarrent le moteur en marche avant ou arrière et passent tout de suite à l'instruction suivante. Les méthodes flt et stop permettent d'arrêter le moteur. stop empêche le moteur de tourner tandis que flt le laisse « flotter » librement. Exemple : </p>
+
+<div class="highlight highlight-source-java"><pre><span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>resetTachoCount();  <span class="pl-c">// Remettre le compteur à zéro </span>
+<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>forward();          <span class="pl-c">// Démarrer le moteur en avant. </span>
+<span class="pl-smi">Thread</span><span class="pl-k">.</span>sleep(<span class="pl-c1">1000</span>);         <span class="pl-c">// Attendre 1 seconde tout en roulant </span>
+<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>stop();             <span class="pl-c">// Arrêter de moteur. </span>
+<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>backward();         <span class="pl-c">// Démarrer le moteur en arrière. </span>
+<span class="pl-k">while</span> (<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>getTachoCount() <span class="pl-k">&gt;</span> <span class="pl-c1">0</span>) {   
+                <span class="pl-c">// Tant que le compteur ne revient pas à 0... </span>
+         <span class="pl-smi">Thread</span><span class="pl-k">.</span>yield();    <span class="pl-c">// Libérer le processeur. </span>
+} 
+<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>stop();             <span class="pl-c">// Arrêter de moteur. </span>
+´´´
+
+<span class="pl-smi">Plusieurs</span> méthodes bloquantes proposent une variante non<span class="pl-k">-</span>bloquante, comme par exemple rotate et rotateTo (voir ci<span class="pl-k">-</span>dessous)<span class="pl-c1">.</span> <span class="pl-smi">La</span> méthode isMoving permet de tester si le moteur tourne toujours. <span class="pl-smi">Exemple</span> <span class="pl-k">:</span> 
+```java
+<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>rotate(<span class="pl-c1">360</span><span class="pl-k">*</span><span class="pl-c1">10</span>, <span class="pl-c1">true</span>); <span class="pl-c">// Démarrer le moteur pour 10 tours. </span>
+<span class="pl-k">while</span> (<span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>isMoving()) {    <span class="pl-c">// Tant que le moteur tourne... </span>
+      <span class="pl-k">int</span> angle <span class="pl-k">=</span> <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>getTachoCount();  <span class="pl-c">// Lire le compteur... </span>
+      <span class="pl-c1">LCD</span><span class="pl-k">.</span>drawInt(angle,<span class="pl-c1">0</span>,<span class="pl-c1">0</span>);           <span class="pl-c">// et l'afficher. </span>
+} 
+´´´
+
+# <span class="pl-c1">4</span>) <span class="pl-smi">Pilotage</span> d<span class="pl-s"><span class="pl-pds">'</span>un robot roulant :</span>
+<span class="pl-s">La classe lejos.robotics.navigation.DifferentialPilot permet de piloter un robot roulant avec deux roues sur un même axe contrôlées par deux moteurs séparés (châssis de type « chaise roulante ») et une roue libre dite « folle »: </span>
+<span class="pl-s">Les constructeurs permettent de déclarer la géométrie du châssis. Les paramètres de distance peuvent être dans une unité quelconque, pourvu que cette unité soit la même dans tout le programme. Exemple (pour un robot dont les roues gauche et droite sont sur les moteurs A et C) : </span>
+<span class="pl-s">```java</span>
+<span class="pl-s">import lejos.nxt.*; </span>
+<span class="pl-s">import lejos.robotics.navigation.*; </span>
+<span class="pl-s"></span>
+<span class="pl-s">final double DIAM_ROUE = 2.1f; // Diamètre des roues motrices en   // cm</span>
+<span class="pl-s">final double DIST_ROUE = 4.4f; // Distance entre les roues </span>
+<span class="pl-s">    // motrices en cm</span>
+<span class="pl-s">DifferentialPilot pilot = new DifferentialPilot(DIAM_ROUE, DIST_ROUE, Motor.A, Motor.C); </span>
+<span class="pl-s">pilot.setTravelSpeed(10);   // Vitesse du robot = 10 cm/s. </span>
+<span class="pl-s">pilot.setRotateSpeed(45);   // Vitesse de pivotage = 45         // degrés/s. </span>
+<span class="pl-s">´´´</span>
+<span class="pl-s"></span>
+<span class="pl-s">Les méthodes (bloquantes) travel, travelArc et rotate permettent ensuite de faire se déplacer le robot en ligne droite, selon un arc de cercle ou de le faire pivoter sur lui même. </span>
+<span class="pl-s">Exemple : </span>
+<span class="pl-s">```java</span>
+<span class="pl-s">pilot.travel(12);       // Avancer de 12 cm.</span>
+<span class="pl-s">pilot.rotate(-90);      // Pivoter de 90 degrés vers la gauche.</span>
+<span class="pl-s">pilot.travel(-12);      // Reculer de 12 cm.</span>
+<span class="pl-s">pilot.travelArc(10, 12);    // Faire un virage à gauche de 12 cm de                    // long selon un rayon de 10 cm.</span>
+<span class="pl-s">pilot.arc(-10, 90);     // Faire un virage à droite de 90 degrés                  // selon un rayon de 10 cm.</span>
+<span class="pl-s">´´´</span>
+<span class="pl-s"></span>
+<span class="pl-s">Les méthodes (non-bloquantes) forward, backward, arcForward, arcBackward et stop permettent de démarrer et d<span class="pl-pds">'</span></span>arrêter le robot pour une durée indéterminée. 
+<span class="pl-smi">Exemple</span> <span class="pl-k">:</span>
+```java
+pilot<span class="pl-k">.</span>forward();        <span class="pl-c">// Avancer en ligne droite indéfiniment. </span>
+<span class="pl-k">while</span>(<span class="pl-k">!</span><span class="pl-smi">Button</span><span class="pl-c1"><span class="pl-k">.</span>ENTER</span><span class="pl-k">.</span>isDown()) { <span class="pl-c">// Tant que le bouton orange                                // n'est pas pressé... </span>
+       <span class="pl-smi">Thread</span><span class="pl-k">.</span>yield();          <span class="pl-c">// Libérer le processeur. </span>
+} 
+pilot<span class="pl-k">.</span>stop();                   <span class="pl-c">// Arrêter le robot. </span>
+´´´
+# <span class="pl-c1">5</span>) <span class="pl-smi">Contr</span>ôle par tâches <span class="pl-k">:</span>
+<span class="pl-smi">Un</span> programme de contrôle de robot doit être réactif <span class="pl-k">:</span> il doit pouvoir adapter son comportement en fonction de l<span class="pl-s"><span class="pl-pds">'</span>évolution du monde physique dans lequel il évolue (repères extérieurs, obstacles, vitesse des moteurs, etc.). Réaliser un tel programme sous forme d<span class="pl-pds">'</span></span>une cascade de conditions et de boucles peut paraître simple et intuitif mais conduit rapidement à du « code spaghetti » <span class="pl-k">:</span> un enchevêtrement inextricable de cas particuliers, difficile à lire, à maintenir et à mettre au point. <span class="pl-smi">Il</span> est possible d<span class="pl-s"><span class="pl-pds">'</span>utiliser un mécanisme de listeners, mais ceci conduit à des difficultés techniques et est découragé par les concepteurs de Lejos eux-mêmes. </span>
+<span class="pl-s">Au lieu de cela, le package lejos.robotics.subsumption fournit une architecture de contrôle par tâches qui permet de réaliser un programme réactif de manière modulaire. Le principe est de décomposer le programme en plusieurs tâches qui sont exécutées au besoin, en respectant un ordre de priorité, plutôt que de manière prédéterminée par le programme. Ceci permet de caractériser clairement chaque aspect du comportement, et d<span class="pl-pds">'</span></span>ajouter facilement des tâches supplémentaires.
+
+<span class="pl-smi">Par</span> exemple, un contrôleur de robot pourrait avoir les tâches suivantes <span class="pl-k">:</span>
+<span class="pl-c1">1.</span> avancer en ligne droite
+<span class="pl-c1">2.</span> si un obstacle est détecté, virer d<span class="pl-s"><span class="pl-pds">'</span>un quart de tour vers la gauche</span>
+<span class="pl-s">3. si un bouton est pressé, s<span class="pl-pds">'</span></span>arrêter et mettre fin au programme.
+
+<span class="pl-smi">Ces</span> tâches sont en ordre croissant de priorité <span class="pl-k">:</span> la tâche <span class="pl-c1">1</span> s<span class="pl-s"><span class="pl-pds">'</span>exécutant tant que les autres tâches (plus prioritaires) ne sont pas activées.</span>
+<span class="pl-s">## 5.1) Définir une tâche</span>
+<span class="pl-s">Chaque tâche est définie par trois éléments, spécifiés par trois méthodes de l<span class="pl-pds">'</span></span><span class="pl-k">interface</span> <span class="pl-en">Behavior</span> : 
+• la méthode takeControl fournit la condition d'activation qui détermine quand cette tâche doit être initiée. On peut vouloir qu'une action soit activée si un obstacle se trouve à moins de 25cm (voir exemple ci-dessous), ou si le capteur de tactile est pressé. On peut également vérifier des conditions multiples. Exemple : La tâche est activée si, à la fois le capteur photosensible détecte une ligne noire, ET si la valeur booléenne d'une variable est à true. Pour que la tâche soit activée, il faut que la valeur retournée par la méthode takecontrol() soit true.
+• la méthode action définit l'action que cette tâche doit accomplire (voir exemple ci-dessous). Cette méthode est appelée dès que la tâche devient active. 
+• la méthode suppress permet la suppression (l'arrêt) de l'action en cours d'exécution. Elle permet aussi de mettre à jour des données avant la fin de la tâche. Elle est appelée par l'Arbitrator sur la tâche en cours si la méthode takeControl()d'une tâche plus prioritaire retourne true. Si cette tâche arrêtée est réactivée plus tard durant l'exéction du programme, la méthode action sera exécutée depuis le début et non depuis l'endroit où elle avait été arrêtée précédemment.  
+Pour définir une tâche, il faut réaliser une implémentation de cette <span class="pl-k">interface</span> <span class="pl-en">d</span>éfinissant ces trois méthodes. Il s'agit d'une forme de programmation événementielle : on fournit au système de contrôle du robot différentes tâches à exécuter lorsque différents événements surviennent. Par exemple, la tâche suivante effectue une manoeuvre lorsqu'un obstacle est détecté par le senseur à ultrasons (sonar) : 
+
+```java
+import lejos.robotics.navigation.DifferentialPilot; 
+import lejos.robotics.subsumption.Behavior; 
+import lejos.nxt.UltrasonicSensor; 
+
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">EviterBehavior</span> <span class="pl-k">implements</span> <span class="pl-e">Behavior</span> { 
+    <span class="pl-k">private</span> <span class="pl-k">boolean</span> suppressed <span class="pl-k">=</span> <span class="pl-c1">false</span>; 
+    <span class="pl-k">private</span> <span class="pl-smi">DifferentialPilot</span> pilote; 
+    <span class="pl-k">private</span> <span class="pl-smi">UltrasonicSensor</span> sonar; 
+
+    <span class="pl-k">public</span> <span class="pl-en">EviterBehavior</span>(<span class="pl-smi">DifferentialPilot</span> <span class="pl-v">pilote</span>,             
+                            <span class="pl-smi">UltrasonicSensor</span> <span class="pl-v">sonar</span>) { 
+        <span class="pl-v">this</span><span class="pl-k">.</span>pilote <span class="pl-k">=</span> pilote; 
+        <span class="pl-v">this</span><span class="pl-k">.</span>sonar <span class="pl-k">=</span> sonar; 
+    } 
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">action</span>() { 
+        suppressed <span class="pl-k">=</span> <span class="pl-c1">false</span>;                 <span class="pl-c">// Remise à zéro  </span>
+        pilote<span class="pl-k">.</span>arc(<span class="pl-c1">20.0</span>, <span class="pl-k">-</span><span class="pl-c1">90.0</span>, <span class="pl-c1">true</span>);  <span class="pl-c">// Entame un virage </span>
+                            <span class="pl-c">// arrière sans attendre la fin. </span>
+        <span class="pl-k">while</span> (<span class="pl-k">!</span>suppressed <span class="pl-k">&amp;&amp;</span> pilote<span class="pl-k">.</span>isMoving()) { 
+                            <span class="pl-c">// Tant que {suppress} n'a pas                          // été  appelé et que le virage </span>
+                            <span class="pl-c">// n'est pas terminé... </span>
+            <span class="pl-smi">Thread</span><span class="pl-k">.</span>yield();     <span class="pl-c">// libérer le processeur </span>
+        } 
+        pilote<span class="pl-k">.</span>stop();      <span class="pl-c">// Arrêter le robot </span>
+    } 
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">suppress</span>() { 
+        suppressed <span class="pl-k">=</span> <span class="pl-c1">true</span>; 
+    } 
+    <span class="pl-k">public</span> <span class="pl-k">boolean</span> <span class="pl-en">takeControl</span>() {  
+        <span class="pl-c">// Activer si un obstacle à moins de 25 cm </span>
+        <span class="pl-k">return</span> sonar<span class="pl-k">.</span>getDistance() <span class="pl-k">&lt;</span> <span class="pl-c1">25</span>; 
+    } 
+} 
+´´´
+
+<span class="pl-smi">Attention</span> au mécanisme de suppression de tâche <span class="pl-k">!</span> <span class="pl-smi">La</span> méthode suppress est exécutée alors que la méthode action est elle<span class="pl-k">-</span>même toujours en cours d<span class="pl-s"><span class="pl-pds">'</span>exécution. Elle n<span class="pl-pds">'</span></span>arrête pas simplement la tâche en cours; au lieu de cela, elle doit signaler à la méthode action que celle<span class="pl-k">-</span>ci doit d<span class="pl-s"><span class="pl-pds">'</span>elle-même interrompre son activité. Pour assurer cette synchronisation, on utilise une variable d<span class="pl-pds">'</span></span>instance suppressed comme suit <span class="pl-k">:</span> 
+• <span class="pl-smi">La</span> méthode action met la variable suppressed à <span class="pl-c1">false</span> initialement,
+• <span class="pl-smi">La</span> méthode suppress, lorsqu<span class="pl-s"><span class="pl-pds">'</span>elle est appelée, met la variable suppressed à true.</span>
+<span class="pl-s">• La méthode action  surveille continuellement la variable suppressed via la condition de boucle. Si la variable suppressed devient true (indiquant que la méthode suppress a été exécutée), le mouvement en cours est interrompu (pilote.stop()) et la méthode retourne immédiatement. La méthode doit donc utiliser des méthodes non-bloquantes sous peine d<span class="pl-pds">'</span></span>ajouter un délai avant la prise en compte du passage de la variable à <span class="pl-c1">true</span>. 
+<span class="pl-smi">La</span> suppression (interruption) de la tâche n<span class="pl-s"><span class="pl-pds">'</span>est nécessaire que si action perdure dans le temps ; si elle se termine immédiatement il n<span class="pl-pds">'</span></span>est pas nécessaire de mettre en place un mécanisme pour la supprimer. <span class="pl-smi">Par</span> exemple, l<span class="pl-s"><span class="pl-pds">'</span>action de la tâche suivante quittant immédiatement le programme il est inutile de prévoir sa suppression. </span>
+<span class="pl-s"></span>
+<span class="pl-s">```java</span>
+<span class="pl-s">public class StopBehavior implements Behavior { </span>
+<span class="pl-s">    private DifferentialPilot pilote; </span>
+<span class="pl-s"></span>
+<span class="pl-s">    public StopBehavior(DifferentialPilot pilote) { </span>
+<span class="pl-s">        this.pilote = pilote; </span>
+<span class="pl-s">    } </span>
+<span class="pl-s"></span>
+<span class="pl-s">    public void action() { </span>
+<span class="pl-s">        pilote.stop();      // Arrêter le robot.</span>
+<span class="pl-s">        System.exit(0);         // Quitter le programme. </span>
+<span class="pl-s">    } </span>
+<span class="pl-s"></span>
+<span class="pl-s">    public void suppress() {        // Rien à supprimer.</span>
+<span class="pl-s">    } </span>
+<span class="pl-s"></span>
+<span class="pl-s">    public boolean takeControl() {  </span>
+<span class="pl-s">        // Activer si le bouton ESCAPE est pressé. </span>
+<span class="pl-s">        return Button.ESCAPE.isDown(); </span>
+<span class="pl-s">    } </span>
+<span class="pl-s">} </span>
+<span class="pl-s">´´´</span>
+<span class="pl-s"></span>
+<span class="pl-s">## 5.3) Créer un contrôleur</span>
+<span class="pl-s">La classe Arbitrator permet de construire et d<span class="pl-pds">'</span></span>activer un contrôleur par tâches. <span class="pl-smi">Son</span> constructeur prend en paramètre un tableau contenant les tâches que le robot sera succeptible d<span class="pl-s"><span class="pl-pds">'</span>effectuer et que l<span class="pl-pds">'</span></span><span class="pl-smi">Arbitrator</span> devra gérer. <span class="pl-smi">Les</span> tâches doivent être ordonnées par ordre croissant de priorité<span class="pl-c1">.</span> <span class="pl-smi">La</span> méthode start() permet d<span class="pl-s"><span class="pl-pds">'</span>activer l<span class="pl-pds">'</span></span><span class="pl-smi">Arbitrator</span>. <span class="pl-smi">Exemple</span> <span class="pl-k">:</span> 
+```java
+<span class="pl-smi">DifferentialPilot</span> pilote <span class="pl-k">=</span> 
+    <span class="pl-k">new</span> <span class="pl-smi">DifferentialPilot</span>(<span class="pl-c1">DIAM_ROUE</span>, <span class="pl-c1">DIST_ROUE</span>, <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span>, <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">C</span>); 
+<span class="pl-smi">UltrasonicSensor</span> sonar <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">UltrasonicSensor</span>(<span class="pl-smi">SensorPort</span><span class="pl-c1"><span class="pl-k">.</span>S1</span>);
+
+<span class="pl-smi">Behavior</span> avancer <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">AvancerBehavior</span>(pilote);
+        <span class="pl-c">// Tâche avancer (tout droit indéfiniment).</span>
+<span class="pl-smi">Behavior</span> eviter <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">EviterBehavior</span>(pilote, sonar);
+        <span class="pl-c">// Tâche eviter (manoeuvre arrière en cas d'obstacle).</span>
+<span class="pl-smi">Behavior</span> stop <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">StopBehavior</span>(pilote); 
+        <span class="pl-c">// Tâche stop (arrêter tout si un bouton est appuyé). </span>
+<span class="pl-k">Behavior</span>[] taches <span class="pl-k">=</span> { avancer, eviter, stop }; 
+        <span class="pl-c">// Tableau de tâches dans l'ordre croissant de priorité.</span>
+<span class="pl-smi">Arbitrator</span> arbitre <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">Arbitrator</span>(taches); 
+arbitre<span class="pl-k">.</span>start(); 
+´´´
+<span class="pl-smi">Une</span> tâche ne sera activée que si elle est plus prioritaire que la tâche en cours, et pourra être interrompue par une tâche plus prioritaire qu<span class="pl-s"><span class="pl-pds">'</span>elle. L<span class="pl-pds">'</span></span>activation et l<span class="pl-s"><span class="pl-pds">'</span>interruption d<span class="pl-pds">'</span></span>une tâche ne peut avoir lieu qu<span class="pl-s"><span class="pl-pds">'</span>au moment où la tâche en cours exécute une méthode non bloquante. Simultanément, le contrôleur évalue en permanence les méthodes takeControl() de la liste des tâches et initie la tâche la plus prioritaire pour laquelle takeControl() retourne true, en appelant au besoin suppress pour supprimer la tâche en cours (moins prioritaire). </span>
+<span class="pl-s">Attention : le bon fonctionnement de ce mécanisme dépend du fait que la méthode action de chaque tâche se termine rapidement lorsque suppress est appelée. A tout moment, une seule tâche est activée ; une nouvelle tâche ne peut s<span class="pl-pds">'</span></span>enclencher que lorsque la tâche en cours s<span class="pl-s"><span class="pl-pds">'</span>interrompt. Pour ce faire, le contrôleur appelle uniquement suppress de la tâche en cours (moins prioritaire), puis appelle action() de la tâche à activer. Il ne peut pas forcer l<span class="pl-pds">'</span></span>arrêt de l<span class="pl-s"><span class="pl-pds">'</span>exécution de action. Il est donc important de bien appliquer le mécanisme de suppression des tâches décrit précédemment. </span>
+<span class="pl-s"></span>
+<span class="pl-s"># 6) Remarques et conseils:</span>
+<span class="pl-s">Un exemple complet nommé SimpleController, dont sont tirés les extraits présentés ici, est disponible sur le site du cours d<span class="pl-pds">'</span></span>informatique. <span class="pl-smi">Utilisez</span><span class="pl-k">-</span>le comme point de départ. 
+<span class="pl-smi">Respectez</span> bien les recommandations concernant la synchronisation, pour éviter des problèmes de blocages et de conflits difficiles à diagnostiquer <span class="pl-k">:</span> 
+• <span class="pl-smi">Soyez</span> attentifs à la différence entre méthodes bloquantes et non<span class="pl-k">-</span>bloquantes. 
+• <span class="pl-smi">Utilisez</span> yield et<span class="pl-k">/</span>ou sleep à bon escient pour ne pas accaparer le processeur. 
+• <span class="pl-smi">Utilisez</span> une variable de synchronisation pour la suppression des tâches, et assurez<span class="pl-k">-</span>vous que vos tâches s<span class="pl-s"><span class="pl-pds">'</span>interrompent bien lorsque demandé. </span>
+<span class="pl-s">Il est prudent d<span class="pl-pds">'</span></span>avoir comme tâche de plus haute priorité une tâche d<span class="pl-s"><span class="pl-pds">'</span>arrêt d<span class="pl-pds">'</span></span>urgence conditionnée sur un bouton du robot (par exemple la tâche <span class="pl-smi">StopBehavior</span> de l<span class="pl-s"><span class="pl-pds">'</span>exemple fourni). </span>
+<span class="pl-s">Les senseurs, moteurs et pièces mécaniques appartiennent au domaine de la physique : leur précision peut donc varier, une étape de calibrage peut être nécessaire... </span>
+<span class="pl-s"></span>
+<span class="pl-s"># 7) Documentation :</span>
+<span class="pl-s">Ces documents sont disponibles ou référencés sur le site du cours d<span class="pl-pds">'</span></span>informatique (<span class="pl-c1">FSAB1401</span>)<span class="pl-c1">.</span> 
+<span class="pl-c1">1.</span> <span class="pl-smi">Manuel</span> de l’utilisateur <span class="pl-c1">NXT</span> (version <span class="pl-smi">Lego</span> <span class="pl-smi">Minstorms</span> <span class="pl-smi">Education</span>)<span class="pl-c1">.</span> <span class="pl-smi">The</span> <span class="pl-smi">Lego</span> <span class="pl-smi">Group</span>, <span class="pl-c1">2006.</span> 
+<span class="pl-c1">2.</span> <span class="pl-smi">The</span> leJOS <span class="pl-c1">NXJ</span> <span class="pl-smi">Tutorial</span>. http<span class="pl-k">:</span><span class="pl-c">//lejos.sourceforge.net/nxt/nxj/tutorial/index.htm </span>
+<span class="pl-c1">3.</span> <span class="pl-smi">The</span> leJOS <span class="pl-c1">NXJ</span> <span class="pl-c1">API</span>. http<span class="pl-k">:</span><span class="pl-c">//lejos.sourceforge.net/nxt/nxj/api/index.html </span>
+<span class="pl-c1">4.</span> <span class="pl-smi">Pour</span> un exemple complet, voir  <span class="pl-smi">SimpleController</span> sur <span class="pl-smi">Moodle</span> </pre></div>
         </section>
 
         <aside id="sidebar">
