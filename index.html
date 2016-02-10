@@ -219,7 +219,7 @@ Au lieu de cela, le package lejos.robotics.subsumption fournit une architecture 
     } 
 } </pre></div>
 
-<p>Attention au mécanisme de suppression de tâche ! La méthode suppress est exécutée alors que la méthode action est elle-même toujours en cours d'exécution. Elle n'arrête pas simplement la tâche en cours; au lieu de cela, elle doit signaler à la méthode action que celle-ci doit d'elle-même interrompre son activité. Pour assurer cette synchronisation, on utilise une variable d'instance suppressed comme suit : </p>
+<p>Attention au mécanisme de suppression de tâche ! La méthode <strong>suppress()</strong> est exécutée alors que la méthode <strong>action()</strong> est elle-même toujours en cours d'exécution. Elle n'arrête pas simplement la tâche en cours; au lieu de cela, elle doit signaler à la méthode action que celle-ci doit d'elle-même interrompre son activité. Pour assurer cette synchronisation, on utilise une variable d'instance <strong>suppressed</strong> comme suit : </p>
 
 <p>• La méthode <strong>action()</strong> met la variable suppressed à false initialement, </p>
 
@@ -284,7 +284,7 @@ Respectez bien les recommandations concernant la synchronisation, pour éviter d
 
 <p>• Utilisez yield et/ou sleep à bon escient pour ne pas accaparer le processeur. </p>
 
-<p>• Utilisez une variable de synchronisation pour la suppression des tâches, et assurez-vous que vos tâches s'interrompent bien lorsque demandé. </p>
+<p>• Utilisez une variable pour la suppression des tâches, et assurez-vous que vos tâches s'interrompent bien lorsque demandé. </p>
 
 <p>Il est prudent d'avoir comme tâche de plus haute priorité une tâche d'arrêt d'urgence conditionnée sur un bouton du robot (par exemple la tâche StopBehavior de l'exemple fourni). </p>
 
