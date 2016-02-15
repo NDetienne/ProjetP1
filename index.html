@@ -182,22 +182,22 @@ pilot<span class="pl-k">.</span>stop();           <span class="pl-c">// Arrêter
 <p>Chaque tâche est définie par trois éléments, spécifiés par trois méthodes de l'interface Behavior : </p>
 
 <h3>
-<a id="511-la-méthode-takecontrol" class="anchor" href="#511-la-m%C3%A9thode-takecontrol" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.1.1) la méthode <strong>takeControl()</strong>
+<a id="511-la-méthode-takecontrol" class="anchor" href="#511-la-m%C3%A9thode-takecontrol" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.1.1) La méthode <strong>takeControl()</strong>
 </h3>
 
-<p>Elle fournit la condition d'activation qui détermine quand cette tâche doit être initiée. On peut vouloir qu'une action soit activée si un obstacle se trouve à moins de 25cm (voir exemple ci-dessous), ou si le capteur de tactile est pressé. On peut également vérifier des conditions multiples. Exemple : La tâche est activée si, à la fois le capteur photosensible détecte une ligne noire, ET si la valeur booléenne d'une variable est à true. Pour que la tâche soit activée, il faut que la valeur retournée par la méthode <strong>takecontrol()</strong> soit <strong>true</strong>. </p>
+<p>Elle fournit la condition d'activation qui détermine quand cette tâche doit être initiée. On peut vouloir qu'une action soit activée si un obstacle se trouve à moins de 25cm (voir exemple ci-dessous), ou si le capteur tactile est pressé. On peut également vérifier des conditions multiples. Exemple : La tâche est activée si, à la fois le capteur photosensible détecte une ligne noire ET si la valeur booléenne d'une variable est à true. Pour que la tâche soit activée, il faut que la valeur retournée par la méthode <strong>takecontrol()</strong> soit <strong>true</strong>. </p>
 
 <h3>
-<a id="511-la-méthode-action" class="anchor" href="#511-la-m%C3%A9thode-action" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.1.1) la méthode <strong>action()</strong>
+<a id="511-la-méthode-action" class="anchor" href="#511-la-m%C3%A9thode-action" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.1.1) La méthode <strong>action()</strong>
 </h3>
 
 <p>Elle définit l'action que cette tâche doit accomplire (voir exemple ci-dessous). Cette méthode est appelée dès que la tâche devient active. </p>
 
 <h3>
-<a id="511-la-méthode-suppress" class="anchor" href="#511-la-m%C3%A9thode-suppress" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.1.1) la méthode <strong>suppress()</strong>
+<a id="511-la-méthode-suppress" class="anchor" href="#511-la-m%C3%A9thode-suppress" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.1.1) La méthode <strong>suppress()</strong>
 </h3>
 
-<p>Cette méthode permet la suppression (l'arrêt) de l'action en cours d'exécution. Elle permet aussi de mettre à jour des données avant la fin de la tâche. Elle est appelée par l'<strong>Arbitrator</strong> sur la tâche en cours si la méthode <strong>takeControl()</strong> d'une tâche plus prioritaire retourne <strong>true</strong>. Si cette tâche arrêtée est réactivée plus tard durant l'exéction du programme, la méthode action sera exécutée depuis le début et non depuis l'endroit où elle avait été arrêtée précédemment.  </p>
+<p>Cette méthode permet la suppression (l'arrêt) de l'action en cours d'exécution. Elle permet aussi de mettre à jour des données avant la fin de la tâche. Elle est appelée par l'<strong>Arbitrator</strong> sur la tâche en cours si la méthode <strong>takeControl()</strong> d'une tâche plus prioritaire retourne <strong>true</strong>. Si cette tâche arrêtée est réactivée plus tard durant l'exéction du programme, la méthode <strong>action()</strong> sera à nouveau exécutée depuis le début et non depuis l'endroit où elle avait été arrêtée précédemment.  </p>
 
 <p>Pour définir une tâche, il faut réaliser une implémentation de cette interface définissant ces trois méthodes. Il s'agit d'une forme de programmation événementielle : on fournit au système de contrôle du robot différentes tâches à exécuter lorsque différents événements surviennent. Par exemple, la tâche suivante effectue une manoeuvre lorsqu'un obstacle est détecté par le senseur à ultrasons (sonar) : </p>
 
@@ -231,15 +231,15 @@ pilot<span class="pl-k">.</span>stop();           <span class="pl-c">// Arrêter
     } 
 } </pre></div>
 
-<p>Attention au mécanisme de suppression de tâche ! La méthode <strong>suppress()</strong> est exécutée alors que la méthode <strong>action()</strong> est elle-même toujours en cours d'exécution. Elle n'arrête pas simplement la tâche en cours; au lieu de cela, elle doit signaler à la méthode action que celle-ci doit d'elle-même interrompre son activité. Pour assurer cette synchronisation, on utilise une variable d'instance <strong>suppressed</strong> comme suit : </p>
+<p>Attention au mécanisme de suppression de tâche ! La méthode <strong>suppress()</strong> est exécutée alors que la méthode <strong>action()</strong> est elle-même toujours en cours d'exécution. Elle n'arrête pas simplement la tâche en cours; au lieu de cela, elle doit signaler à la méthode <strong>action()</strong> que celle-ci doit d'elle-même interrompre son activité. Pour assurer cette synchronisation, on utilise la variable d'instance <strong>suppressed</strong> comme suit : </p>
 
-<p>• La méthode <strong>action()</strong> met la variable suppressed à false initialement, </p>
+<p>• La méthode <strong>action()</strong> met la variable <strong>suppressed</strong> à false initialement, </p>
 
-<p>• La méthode <strong>suppress()</strong>, lorsqu'elle est appelée, met la variable suppressed à true, </p>
+<p>• La méthode <strong>suppress()</strong>, lorsqu'elle est appelée, met la variable <strong>suppressed</strong> à true, </p>
 
-<p>• La méthode <strong>action()</strong> surveille continuellement la variable suppressed via la condition de boucle. </p>
+<p>• La méthode <strong>action()</strong> surveille continuellement la variable <strong>suppressed</strong> via la condition de boucle. </p>
 
-<p>Si la variable <strong>suppressed</strong> devient <strong>true</strong> (indiquant que la méthode suppress a été exécutée), le mouvement en cours est interrompu (pilote.stop()) et la méthode retourne immédiatement. La méthode doit donc utiliser des méthodes non-bloquantes sous peine d'ajouter un délai avant la prise en compte du passage de la variable à true. </p>
+<p>Si la variable <strong>suppressed</strong> de la tâche en cours devient <strong>true</strong> (indiquant que la méthode suppress a été exécutée), le mouvement en cours est interrompu (pilote.stop()) et la méthode retourne immédiatement. La méthode doit donc utiliser des méthodes non-bloquantes sous peine d'ajouter un délai avant la prise en compte du passage de la variable à <strong>true</strong>. </p>
 
 <p>La suppression (interruption) de la tâche n'est nécessaire que si action perdure dans le temps ; si elle se termine immédiatement il n'est pas nécessaire de mettre en place un mécanisme pour la supprimer. Par exemple, l'action de la tâche suivante quittant immédiatement le programme il est inutile de prévoir sa suppression. </p>
 
@@ -267,7 +267,7 @@ pilot<span class="pl-k">.</span>stop();           <span class="pl-c">// Arrêter
 <h2>
 <a id="52-créer-un-contrôleur" class="anchor" href="#52-cr%C3%A9er-un-contr%C3%B4leur" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.2) Créer un contrôleur</h2>
 
-<p>La classe <strong>Arbitrator</strong> permet de construire et d'activer un contrôleur par tâche. Son constructeur prend en paramètre un tableau contenant les tâches que le robot sera succeptible d'effectuer et que l'<strong>Arbitrator</strong> devra gérer. Les tâches doivent être ordonnées par ordre croissant de priorité. La méthode <strong>start()</strong> permet d'activer l'<strong>Arbitrator</strong>. </p>
+<p>La classe <strong>Arbitrator</strong> permet de construire et d'activer un contrôleur par tâche. Son constructeur prend en paramètre un tableau contenant les tâches que le robot sera succeptible d'effectuer et que l'<strong>Arbitrator</strong> devra gérer. Les tâches doivent être ordonnées par <em>ordre croissant de priorité</em>. La méthode <strong>start()</strong> permet d'activer l'<strong>Arbitrator</strong>. </p>
 
 <p>Exemple : </p>
 
@@ -289,14 +289,17 @@ Attention : le bon fonctionnement de ce mécanisme dépend du fait que la métho
 <h1>
 <a id="6-remarques-et-conseils" class="anchor" href="#6-remarques-et-conseils" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6) Remarques et conseils:</h1>
 
-<p>Un exemple complet nommé <strong>SimpleController</strong>, dont sont tirés les extraits présentés ici, est disponible sur le site du cours d'informatique. Utilisez-le comme point de départ. 
-Respectez bien les recommandations concernant la synchronisation, pour éviter des problèmes de blocages et de conflits, difficiles à diagnostiquer : </p>
+<p>Un exemple complet nommé <strong>SimpleController</strong>, dont sont tirés les extraits présentés ici, est disponible sur <a href="https://github.com/NDetienne/ProjetP1">GitHub</a>. Utilisez-le comme point de départ. </p>
+
+<p>Respectez bien les recommandations suivantes concernant la synchronisation afin d'éviter des problèmes de blocages et de conflits difficiles à diagnostiquer : </p>
 
 <p>• Soyez attentifs à la différence entre méthodes bloquantes et non-bloquantes. </p>
 
 <p>• Utilisez yield et/ou sleep à bon escient pour ne pas accaparer le processeur. </p>
 
-<p>• Utilisez une variable pour la suppression des tâches, et assurez-vous que vos tâches s'interrompent bien lorsque demandé. </p>
+<p>• Utilisez correctement la variable <strong>suppressed</strong> pour la suppression des tâches ainsi que les tests de valeurs de cette variable.</p>
+
+<p>• Assurez-vous que vos tâches s'interrompent bien lorsque demandé. </p>
 
 <p>Il est prudent d'avoir comme tâche de plus haute priorité une tâche d'arrêt d'urgence conditionnée sur un bouton du robot (par exemple la tâche StopBehavior de l'exemple fourni). </p>
 
@@ -305,13 +308,11 @@ Respectez bien les recommandations concernant la synchronisation, pour éviter d
 <h1>
 <a id="7-documentation-" class="anchor" href="#7-documentation-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>7) Documentation :</h1>
 
-<p>Ces documents sont disponibles, ou référencés, sur le site du cours d'informatique (FSAB1401). </p>
-
 <ol>
-<li><p>Manuel de l’utilisateur NXT (version Lego Minstorms Education). The Lego Group, 2006.  </p></li>
-<li><p><a href="http://lejos.sourceforge.net/nxt/nxj/tutorial/index.htm">The leJOS NXJ Tutorial.</a> </p></li>
+<li><p><a href="http://isn.codelab.info/site/assets/files/1637/guide_nxt.pdf">Manuel de l’utilisateur NXT</a></p></li>
+<li><p><a href="http://www.lejos.org/rcx/tutorial/index.html">The leJOS NXJ Tutorial.</a> </p></li>
 <li><p><a href="http://lejos.sourceforge.net/nxt/nxj/api/index.html">The leJOS NXJ API.</a> </p></li>
-<li><p>Pour un exemple complet, voir le programme SimpleController sur Moodle </p></li>
+<li><p>Pour un exemple complet, voir le programme SimpleController sur <a href="https://github.com/NDetienne/ProjetP1">GitHub</a></p></li>
 </ol>
       </section>
       <footer>
