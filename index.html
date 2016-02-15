@@ -48,7 +48,7 @@ Celle-ci contient de nombreuses classes spécifiques aux fonctionnalités des Le
 <h1>
 <a id="2-les-senseurs-" class="anchor" href="#2-les-senseurs-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2) Les senseurs :</h1>
 
-<p>La classe <strong>lejos.nxt.SensorPort</strong> représente un un port d’entrée du NXT. Il y a quatre instances prédéfinies de la classe <strong>SensorPort</strong>, correspondant aux quatre ports d'entrée : <strong>SensorPort.S1</strong>, <strong>SensorPort.S2</strong>, <strong>SensorPort.S3</strong> et <strong>SensorPort.S4</strong>. 
+<p>La classe <strong>lejos.nxt.SensorPort</strong> représente un port d’entrée du NXT. Il y a quatre instances prédéfinies de la classe <strong>SensorPort</strong>, correspondant aux quatre ports d'entrée : <strong>SensorPort.S1</strong>, <strong>SensorPort.S2</strong>, <strong>SensorPort.S3</strong> et <strong>SensorPort.S4</strong>. 
 Il existe également une classe correspondant à chaque type de senseur : </p>
 
 <ul>
@@ -77,14 +77,14 @@ Il existe également une classe correspondant à chaque type de senseur : </p>
 <a id="3-les-moteurs-" class="anchor" href="#3-les-moteurs-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3) Les moteurs :</h1>
 
 <p>La classe <strong>lejos.nxt.Motor</strong> permet d'accéder aux moteurs NXT. Elle fournit trois instances prédéfinies (de type <strong>NXTRegulatedMotor</strong>), correspondant aux trois ports de sortie du NXT : <strong>Motor.A</strong>, <strong>Motor.B</strong> et <strong>Motor.C</strong>.
-La classe <strong>NXTRegulatedMotor</strong> représente un moteur. La méthode <strong>setSpeed</strong> permet d’ajuster la vitesse du moteur. Les moteurs NXT sont équipés d’un capteur de rotation intégré (tachymètre) qui permet d’offrir une large palette de méthodes différentes. Les méthodes <strong>getTachoCount</strong> et <strong>resetTachoCount</strong> permettent de lire et de remettre à zéro le compteur de rotation. Les autres méthodes, telles que <strong>rotate</strong>, utilisent également ce compteur pour contrôler précisément le nombre de rotations du moteur. 
+La classe <strong>NXTRegulatedMotor</strong> représente un moteur. La méthode <strong>setSpeed</strong> permet d’ajuster la vitesse du moteur. Les moteurs NXT sont équipés d’un capteur de rotation intégré (tachymètre) qui permet d’offrir une large palette de méthodes différentes. Les méthodes <strong>getTachoCount()</strong> et <strong>resetTachoCount()</strong> permettent de lire et de remettre à zéro le compteur de rotation. Les autres méthodes, telles que <strong>rotate()</strong>, utilisent également ce compteur pour contrôler précisément le nombre de rotations du moteur. 
 Les mouvements du moteur s'effectuent à leur vitesse propre, distincte de (et beaucoup plus lente que) la vitesse d'exécution du programme Java. Il existe deux types de méthodes permettant de commander le mouvement du moteur. </p>
 
 <p>Il s'agit des <strong>méthodes bloquantes</strong> et des <strong>méthodes non-bloquantes</strong> : </p>
 
 <p>• Pour une <strong>méthode bloquante</strong>, l'amplitude du mouvement (nombre de degrés, de tours, distance, ...) est pré-déterminée et la méthode attend jusqu'à la fin du mouvement (exemple : <strong>Motor.A.rotate(90)</strong>). Durant ce temps, l'exécution du programme est suspendue; il ne peut pas, par exemple, détecter un obstacle et arrêter prématurément le mouvement. </p>
 
-<p>Les <strong>méthodes bloquantes</strong> <strong>rotate</strong> et <strong>rotateTo</strong> font tourner le moteur d'un angle donné ou jusqu'à un angle donné. Lorsque la rotation demandée est terminée, le programme passe à l'instruction suivante. </p>
+<p>Les <strong>méthodes bloquantes</strong> <strong>rotate()</strong> et <strong>rotateTo(...)</strong> font tourner le moteur d'un angle donné ou jusqu'à un angle donné. Lorsque la rotation demandée est terminée, le programme passe à l'instruction suivante. </p>
 
 <p>Exemple : </p>
 
@@ -95,8 +95,8 @@ Les mouvements du moteur s'effectuent à leur vitesse propre, distincte de (et b
 <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>rotateTo(<span class="pl-c1">720</span>);   <span class="pl-c">// Faire tourner le moteur jusqu'à ce que le compteur atteigne 2 tours. </span>
 <span class="pl-k">int</span> angle <span class="pl-k">=</span> <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>getTachoCount();  <span class="pl-c">//Lire le compteur.</span></pre></div>
 
-<p>• Une méthode est <strong>non-bloquante</strong> lorsque la méthode démarre le mouvement et se termine immédiatement, alors que le mouvement se poursuit (exemple <strong>Motor.A.forward()</strong>). Le programme doit donc lui-même arrêter les moteurs en temps opportun, soit après un certain délai (<strong>Thread.sleep(xx)</strong>), soit lorsqu'une condition est vérifiée. En attendant, le programme doit absolument libérer le processeur (<strong>Thread.yield()</strong>), pour permettre aux autres tâches de s'exécuter. 
-Les méthodes non-bloquantes <strong>forward()</strong> et <strong>backward()</strong> démarrent le moteur en marche avant ou arrière et passent tout de suite à l'instruction suivante. Les méthodes <strong>flt()</strong> et <strong>stop()</strong> permettent d'arrêter le moteur. <strong>stop()</strong> empêche le moteur de tourner tandis que <strong>flt()</strong> le laisse « flotter » librement.</p>
+<p>• Une méthode est <strong>non-bloquante</strong> lorsque la méthode démarre le mouvement et se termine immédiatement, alors que le mouvement se poursuit (exemple <strong>Motor.A.forward()</strong>). Le programme doit donc lui-même arrêter les moteurs en temps opportun, soit après un certain délai (<strong>Thread.sleep(...)</strong>), soit lorsqu'une condition est vérifiée. En attendant, le programme doit absolument libérer le processeur (<strong>Thread.yield()</strong>), pour permettre aux autres tâches de s'exécuter. 
+Les méthodes non-bloquantes <strong>forward()</strong> et <strong>backward()</strong> démarrent le moteur en marche avant ou arrière et passent tout de suite à l'instruction suivante. Les méthodes <strong>flt()</strong> et <strong>stop()</strong> permettent d'arrêter le moteur. La méthode <strong>stop()</strong> empêche le moteur de tourner tandis que <strong>flt()</strong> le laisse « flotter » librement.</p>
 
 <p>Exemple : </p>
 
@@ -110,7 +110,7 @@ Les méthodes non-bloquantes <strong>forward()</strong> et <strong>backward()</s
 } 
 <span class="pl-smi">Motor</span><span class="pl-k">.</span><span class="pl-smi">A</span><span class="pl-k">.</span>stop();                 <span class="pl-c">// Arrêter de moteur. </span></pre></div>
 
-<p>Plusieurs méthodes bloquantes proposent une variante non-bloquante, comme par exemple <strong>rotate()</strong> et <strong>rotateTo()</strong> (voir ci-dessous). La méthode <strong>isMoving()</strong> permet de tester si le moteur tourne toujours.</p>
+<p>Plusieurs méthodes bloquantes sont proposées avec une variante non-bloquante, comme par exemple <strong>rotate(..)</strong> et <strong>rotateTo(...)</strong> en ajoutant <strong>true</strong> comme argument  (voir ci-dessous). La méthode <strong>isMoving()</strong> permet de tester si le moteur tourne toujours.</p>
 
 <p>Exemple : </p>
 
@@ -123,10 +123,10 @@ Les méthodes non-bloquantes <strong>forward()</strong> et <strong>backward()</s
 <h1>
 <a id="4-pilotage-dun-robot-roulant-" class="anchor" href="#4-pilotage-dun-robot-roulant-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4) Pilotage d'un robot roulant :</h1>
 
-<p>La classe <strong>lejos.robotics.navigation.DifferentialPilot</strong> permet de piloter un robot roulant avec deux roues sur un même axe contrôlées par deux moteurs séparés (châssis de type « chaise roulante ») et une roue libre dite « folle »: 
+<p>La classe <strong>lejos.robotics.navigation.DifferentialPilot</strong> permet de piloter un robot roulant avec deux roues sur un même axe, contrôlées par deux moteurs séparés (châssis de type « chaise roulante ») et une roue libre dite « folle »: 
 Les constructeurs permettent de déclarer la géométrie du châssis. Les paramètres de distance peuvent être dans une unité quelconque, pourvu que cette unité soit la même dans tout le programme.</p>
 
-<p>Exemple (pour un robot dont les roues gauche et droite sont sur les moteurs A et C) : </p>
+<p>Exemple pour un robot dont les roues gauche et droite sont sur les moteurs A et C : </p>
 
 <div class="highlight highlight-source-java"><pre><span class="pl-k">import</span> <span class="pl-smi">lejos.nxt.*</span>; 
 <span class="pl-k">import</span> <span class="pl-smi">lejos.robotics.navigation.*</span>; 
@@ -137,7 +137,7 @@ Les constructeurs permettent de déclarer la géométrie du châssis. Les param�
 pilot<span class="pl-k">.</span>setTravelSpeed(<span class="pl-c1">10</span>);        <span class="pl-c">// Vitesse du robot = 10 cm/s. </span>
 pilot<span class="pl-k">.</span>setRotateSpeed(<span class="pl-c1">45</span>);        <span class="pl-c">// Vitesse de pivotage = 45 degrés/s. </span></pre></div>
 
-<p>Les méthodes (bloquantes) <strong>travel(xx)</strong>, <strong>travelArc(xx)</strong> et <strong>rotate(xx)</strong> permettent ensuite de faire se déplacer le robot en ligne droite, selon un arc de cercle ou de le faire pivoter sur lui même. </p>
+<p>Les méthodes (bloquantes) <strong>travel(...)</strong>, <strong>travelArc(...)</strong> et <strong>rotate(...)</strong> permettent ensuite de faire se déplacer le robot en ligne droite, selon un arc de cercle ou de le faire pivoter sur lui même. </p>
 
 <p>Exemple : </p>
 
@@ -147,7 +147,7 @@ pilot<span class="pl-k">.</span>travel(<span class="pl-k">-</span><span class="p
 pilot<span class="pl-k">.</span>travelArc(<span class="pl-c1">10</span>, <span class="pl-c1">12</span>);         <span class="pl-c">// Faire un virage à gauche de 12 cm de long selon un rayon de 10 cm.</span>
 pilot<span class="pl-k">.</span>arc(<span class="pl-k">-</span><span class="pl-c1">10</span>, <span class="pl-c1">90</span>);              <span class="pl-c">// Faire un virage à droite de 90 degrés selon un rayon de 10 cm.</span></pre></div>
 
-<p>Les méthodes (non-bloquantes) <strong>forward()</strong>, <strong>backward()</strong>, <strong>arcForward()</strong>, <strong>arcBackward()</strong> et <strong>stop()</strong> permettent de démarrer et d'arrêter le robot pour une durée indéterminée.</p>
+<p>Les méthodes (non-bloquantes) <strong>forward()</strong>, <strong>backward()</strong>, <strong>arcForward()</strong>, <strong>arcBackward()</strong> et <strong>stop()</strong> permettent de démarrer un moteur pour une durée indéterminée et de l'arrêter.</p>
 
 <p>Exemple :</p>
 
@@ -160,8 +160,11 @@ pilot<span class="pl-k">.</span>stop();           <span class="pl-c">// Arrêter
 <h1>
 <a id="5-contrôle-par-tâches-" class="anchor" href="#5-contr%C3%B4le-par-t%C3%A2ches-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5) Contrôle par tâches :</h1>
 
-<p>Un programme de contrôle de robot doit être réactif : il doit pouvoir adapter son comportement en fonction de l'évolution du monde physique dans lequel il évolue (repères extérieurs, obstacles, vitesse des moteurs, etc.). Réaliser un tel programme sous forme d'une cascade de conditions et de boucles peut paraître simple et intuitif mais conduit rapidement à du « code spaghetti » : un enchevêtrement inextricable de cas particuliers, difficile à lire, à maintenir et à mettre au point. Il est possible d'utiliser un mécanisme de listeners, mais ceci conduit à des difficultés techniques et est découragé par les concepteurs de Lejos eux-mêmes. 
-Au lieu de cela, le package lejos.robotics.subsumption fournit une architecture de contrôle par tâches qui permet de réaliser un programme réactif de manière modulaire. Le principe est de décomposer le programme en plusieurs tâches qui sont exécutées au besoin, en respectant un ordre de priorité, plutôt que de manière prédéterminée par le programme. Ceci permet de caractériser clairement chaque aspect du comportement, et d'ajouter facilement des tâches supplémentaires.</p>
+<p>Un programme qui a pour but de contrôler un robot doit être réactif : il doit pouvoir adapter son comportement en fonction de l'évolution du monde physique dans lequel il évolue (repères extérieurs, obstacles, vitesse des moteurs, etc.). Réaliser un tel programme sous forme d'une cascade de conditions et de boucles peut paraître simple et intuitif mais conduit rapidement à du « code spaghetti » : un enchevêtrement inextricable de cas particuliers, difficile à lire, à maintenir et à mettre au point. </p>
+
+<p>Il est possible d'utiliser un mécanisme de listeners, mais ceci conduit à des difficultés techniques et est découragé par les concepteurs de Lejos eux-mêmes. </p>
+
+<p>Au lieu de cela, le package lejos.robotics.subsumption fournit une architecture de contrôle par tâche qui permet de réaliser un programme réactif, de manière modulaire. Le principe est de décomposer le programme en plusieurs tâches qui sont exécutées au besoin (programmation événementielle), en respectant un ordre de priorité, plutôt que de manière prédéterminée par le programme (programmation séquentielle). Ceci permet de caractériser clairement chaque aspect du comportement, et d'ajouter facilement des tâches supplémentaires.</p>
 
 <p>Par exemple, un contrôleur de robot pourrait avoir les tâches suivantes : </p>
 
