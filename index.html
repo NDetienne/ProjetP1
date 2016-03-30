@@ -40,13 +40,13 @@
       </nav>
       <section>
         <h1>
-<a id="1-comment-programmer-son-robot" class="anchor" href="#1-comment-programmer-son-robot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1) Comment programmer son robot :</h1>
+<a id="1-comment-programmer-son-robot" class="anchor" href="#1-comment-programmer-son-robot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1) Comment programmer son robot</h1>
 
 <p>La librairie concernant le fonctionnement des robots Lego est détaillée à <a href="http://lejos.sourceforge.net/nxt/nxj/api/index.html">cette page</a>.
 Celle-ci contient de nombreuses classes spécifiques aux fonctionnalités des Lego Minstorms, groupées dans les packages dont le nom commence par « lejos » (n’oubliez pas les « import » correspondants dans votre programme !). Ce tutoriel n'a pas pour but de détailler toutes les possibilités de ces classes, mais donne un aperçu succinct et partiel des possibilités offertes par ces classes et méthodes. Ce qui suit est donc une entrée en matière suffisante pour la réalisation du projet P1.</p>
 
 <h1>
-<a id="2-les-senseurs-" class="anchor" href="#2-les-senseurs-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2) Les senseurs :</h1>
+<a id="2-les-senseurs-" class="anchor" href="#2-les-senseurs-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2) Les senseurs</h1>
 
 <p>La classe <strong>lejos.nxt.SensorPort</strong> représente un port d’entrée du NXT. Il y a quatre instances prédéfinies de la classe <strong>SensorPort</strong>, correspondant aux quatre ports d'entrée : <strong>SensorPort.S1</strong>, <strong>SensorPort.S2</strong>, <strong>SensorPort.S3</strong> et <strong>SensorPort.S4</strong>. 
 Il existe également une classe correspondant à chaque type de senseur : </p>
@@ -74,7 +74,7 @@ Il existe également une classe correspondant à chaque type de senseur : </p>
 } </pre></div>
 
 <h1>
-<a id="3-les-moteurs-" class="anchor" href="#3-les-moteurs-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3) Les moteurs :</h1>
+<a id="3-les-moteurs-" class="anchor" href="#3-les-moteurs-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3) Les moteurs</h1>
 
 <p>La classe <strong>lejos.nxt.Motor</strong> permet d'accéder aux moteurs NXT. Elle fournit trois instances prédéfinies (de type <strong>NXTRegulatedMotor</strong>), correspondant aux trois ports de sortie du NXT : <strong>Motor.A</strong>, <strong>Motor.B</strong> et <strong>Motor.C</strong>.
 La classe <strong>NXTRegulatedMotor</strong> représente un moteur. La méthode <strong>setSpeed</strong> permet d’ajuster la vitesse du moteur. Les moteurs NXT sont équipés d’un capteur de rotation intégré (tachymètre) qui permet d’offrir une large palette de méthodes différentes. Les méthodes <strong>getTachoCount()</strong> et <strong>resetTachoCount()</strong> permettent de lire et de remettre à zéro le compteur de rotation. Les autres méthodes, telles que <strong>rotate()</strong>, utilisent également ce compteur pour contrôler précisément le nombre de rotations du moteur. 
@@ -121,7 +121,7 @@ Les méthodes non-bloquantes <strong>forward()</strong> et <strong>backward()</s
 } </pre></div>
 
 <h1>
-<a id="4-pilotage-dun-robot-roulant-" class="anchor" href="#4-pilotage-dun-robot-roulant-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4) Pilotage d'un robot roulant :</h1>
+<a id="4-pilotage-dun-robot-roulant-" class="anchor" href="#4-pilotage-dun-robot-roulant-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4) Pilotage d'un robot roulant</h1>
 
 <p>La classe <strong>lejos.robotics.navigation.DifferentialPilot</strong> permet de piloter un robot roulant avec deux roues sur un même axe, contrôlées par deux moteurs séparés (châssis de type « chaise roulante ») et une roue libre dite « folle »: 
 Les constructeurs permettent de déclarer la géométrie du châssis. Les paramètres de distance peuvent être dans une unité quelconque, pourvu que cette unité soit la même dans tout le programme.</p>
@@ -158,7 +158,7 @@ pilot<span class="pl-k">.</span>arc(<span class="pl-k">-</span><span class="pl-c
 pilot<span class="pl-k">.</span>stop();           <span class="pl-c">// Arrêter le robot. </span></pre></div>
 
 <h1>
-<a id="5-contrôle-par-tâches-" class="anchor" href="#5-contr%C3%B4le-par-t%C3%A2ches-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5) Contrôle par tâches :</h1>
+<a id="5-contrôle-par-tâches-" class="anchor" href="#5-contr%C3%B4le-par-t%C3%A2ches-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5) Contrôle par tâches</h1>
 
 <p>Un programme qui a pour but de contrôler un robot doit être réactif : il doit pouvoir adapter son comportement en fonction de l'évolution du monde physique dans lequel il évolue (repères extérieurs, obstacles, vitesse des moteurs, etc.). Réaliser un tel programme sous forme d'une cascade de conditions et de boucles peut paraître simple et intuitif mais conduit rapidement à du « code spaghetti » : un enchevêtrement inextricable de cas particuliers, difficile à lire, à maintenir et à mettre au point. </p>
 
@@ -287,7 +287,7 @@ Attention : le bon fonctionnement de ce mécanisme dépend du fait que la métho
 <p>A tout moment, une seule tâche est activée ; une nouvelle tâche ne peut s'enclencher que lorsque la tâche en cours s'interrompt. Pour ce faire, le contrôleur appelle uniquement <strong>suppress()</strong> de la tâche en cours (moins prioritaire), puis appelle <strong>action()</strong> de la tâche à activer. Il ne peut pas forcer l'arrêt de l'exécution de action. Il est donc important de bien appliquer le mécanisme de suppression des tâches décrit précédemment. </p>
 
 <h1>
-<a id="6-remarques-et-conseils" class="anchor" href="#6-remarques-et-conseils" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6) Remarques et conseils:</h1>
+<a id="6-remarques-et-conseils" class="anchor" href="#6-remarques-et-conseils" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6) Remarques et conseils</h1>
 
 <p>Un exemple complet nommé <strong>SimpleController</strong>, dont sont tirés les extraits présentés ici, est disponible sur <a href="https://github.com/NDetienne/ProjetP1">GitHub</a>. Utilisez-le comme point de départ. </p>
 
@@ -306,7 +306,7 @@ Attention : le bon fonctionnement de ce mécanisme dépend du fait que la métho
 <p>Les senseurs, moteurs et pièces mécaniques appartiennent au domaine de la physique : leur précision peut donc varier, une étape de calibrage peut être nécessaire... </p>
 
 <h1>
-<a id="7-documentation-" class="anchor" href="#7-documentation-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>7) Documentation :</h1>
+<a id="7-documentation-" class="anchor" href="#7-documentation-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>7) Documentation</h1>
 
 <ol>
 <li><p><a href="http://isn.codelab.info/site/assets/files/1637/guide_nxt.pdf">Manuel de l’utilisateur NXT</a></p></li>
