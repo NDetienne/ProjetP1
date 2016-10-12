@@ -45,13 +45,13 @@
 <p>La « brique » NXT fabriquée par Lego est la nouvelle version du système Lego Mindstorms. 
 Elle est dotée d’un microprocesseur ARM7 32 bits avec 256 ko de mémoire flash, dont 64 ko de mémoire vive (RAM).</p>
 
-<p><center><img src="images/manuel/brique.png" alt="brique" width=25% height=25%></center></p>
+<p><img src="https://github.com/UCL-INGI/Projet-P1/blob/gh-pages/images/manuel/brique.png" alt="brique"></p>
 
 <p>Le NXT est équipé de connexion sans fil Bluetooth (classe II V2.0) et d'un port USB 2.0. 
 Ces connexions permettent au NXT de se connecter facilement aux PCs avec un haut débit de transfert de données. 
 Pour son alimentation, le NXT a une batterie lithium rechargeable et peut également fonctionner sur six piles AA. </p>
 
-<p><center><img src="images/manuel/alim.png" alt="alim" width=25% height=25%></center></p>
+<p><img src="https://github.com/UCL-INGI/Projet-P1/blob/gh-pages/images/manuel/Xaejjj.png" alt="alim"></p>
 
 <p>Pour sa partie robotique, le NXT possède : 
 quatre ports d’entrée (1 à 4) destinées à la connexion de capteurs (il y a quatre types de capteurs : capteur tactile, capteur sonore, capteur photosensible et capteur d’ultrasons), 
@@ -65,7 +65,45 @@ Bouton gris foncé : pour éteindre ou retourner en arrière. </p>
 <p>En outre, le NXT est doté d’un haut-parleur et peut produire des sons à une fréquence de 8 kHz. </p>
 
 <h1>
-<a id="1-comment-programmer-son-robot" class="anchor" href="#1-comment-programmer-son-robot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1) Comment programmer son robot :</h1>
+<a id="2-le-logiciel" class="anchor" href="#2-le-logiciel" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2) Le logiciel :</h1>
+
+<p>Dans le cadre du projet, vous allez écrire des programmes en Java pour piloter votre robot. LeJOS NXJ est un environnement de programmation Java pour le Lego Mindstorms NXJ. Pour utiliser LeJOS NXJ, on installe une extension NXJ dans BlueJ. </p>
+
+<ul>
+<li>Cette extension ajoute un sous-menu qui permet de compiler et de télécharger les programmes Java dans le NXT. </li>
+<li>Les programmes Java pour le NXT doivent être écrits et compilés sur un PC avant d'être téléchargés dans la mémoire du NXT. </li>
+<li>Après avoir préparé les programmes sur le PC, on peut les télécharger dans NXT par la connexion (voir plus bas pour le téléchargement). </li>
+<li>Une fois que les programmes sont chargés dans le mémoire de NXT, on peut choisir un programme (en utilisant les boutons de flèches) et le lancer avec le bouton orange. </li>
+</ul>
+
+<h1>
+<a id="3-bluej" class="anchor" href="#3-bluej" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3) Bluej</h1>
+
+<h2>
+<a id="31-démarrer-bluej-dans-les-salles-barb" class="anchor" href="#31-d%C3%A9marrer-bluej-dans-les-salles-barb" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.1) Démarrer Bluej dans les salles Barb:</h2>
+
+<p>TODO</p>
+
+<h2>
+<a id="32-démarrer-bluej-dans-les-salles-candix-daoiao" class="anchor" href="#32-d%C3%A9marrer-bluej-dans-les-salles-candix-daoiao" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.2) Démarrer Bluej dans les salles Candix (DAO/IAO...):</h2>
+
+<p>TODO</p>
+
+<h2>
+<a id="34-installation-sur-votre-portable" class="anchor" href="#34-installation-sur-votre-portable" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.4) Installation sur votre portable:</h2>
+
+<p>TODO</p>
+
+<h2>
+<a id="35-tester-linstallation-et-le-robot-sur-base-dun-exemple" class="anchor" href="#35-tester-linstallation-et-le-robot-sur-base-dun-exemple" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.5) Tester l'installation et le robot sur base d'un exemple:</h2>
+
+<p>TODO</p>
+
+<h2>
+<a id="36-télécharger-le-programme-dans-le-robot" class="anchor" href="#36-t%C3%A9l%C3%A9charger-le-programme-dans-le-robot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.6) Télécharger le programme dans le robot:</h2>
+
+<h1>
+<a id="4-comment-programmer-son-robot" class="anchor" href="#4-comment-programmer-son-robot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4) Comment programmer son robot :</h1>
 
 <p>La librairie concernant le fonctionnement des robots Lego est détaillée à <a href="http://lejos.sourceforge.net/nxt/nxj/api/index.html">cette page</a>.
 Celle-ci contient de nombreuses classes spécifiques aux fonctionnalités des Lego Minstorms, groupées dans les packages dont le nom commence par « lejos » (n’oubliez pas les « import » correspondants dans votre programme !). Ce tutoriel n'a pas pour but de détailler toutes les possibilités de ces classes, mais donne un aperçu succinct et partiel des possibilités offertes par ces classes et méthodes. Ce qui suit est donc une entrée en matière suffisante pour la réalisation du projet P1.</p>
