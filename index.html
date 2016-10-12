@@ -77,30 +77,32 @@ Bouton gris foncé : pour éteindre ou retourner en arrière. </p>
 </ul>
 
 <h1>
-<a id="3-bluej" class="anchor" href="#3-bluej" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3) Bluej</h1>
+<a id="3-bluej" class="anchor" href="#3-bluej" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3) Bluej:</h1>
 
 <h2>
-<a id="31-démarrer-bluej-dans-les-salles-barb" class="anchor" href="#31-d%C3%A9marrer-bluej-dans-les-salles-barb" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.1) Démarrer Bluej dans les salles Barb:</h2>
+<a id="1-démarrer-bluej-dans-les-salles-barb" class="anchor" href="#1-d%C3%A9marrer-bluej-dans-les-salles-barb" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1) Démarrer Bluej dans les salles Barb:</h2>
 
 <p>TODO</p>
 
 <h2>
-<a id="32-démarrer-bluej-dans-les-salles-candix-daoiao" class="anchor" href="#32-d%C3%A9marrer-bluej-dans-les-salles-candix-daoiao" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.2) Démarrer Bluej dans les salles Candix (DAO/IAO...):</h2>
+<a id="2-démarrer-bluej-dans-les-salles-candix-daoiao" class="anchor" href="#2-d%C3%A9marrer-bluej-dans-les-salles-candix-daoiao" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2) Démarrer Bluej dans les salles Candix (DAO/IAO...):</h2>
 
 <p>TODO</p>
 
 <h2>
-<a id="34-installation-sur-votre-portable" class="anchor" href="#34-installation-sur-votre-portable" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.4) Installation sur votre portable:</h2>
+<a id="3-installation-sur-votre-portable" class="anchor" href="#3-installation-sur-votre-portable" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3) Installation sur votre portable:</h2>
 
 <p>TODO</p>
 
 <h2>
-<a id="35-tester-linstallation-et-le-robot-sur-base-dun-exemple" class="anchor" href="#35-tester-linstallation-et-le-robot-sur-base-dun-exemple" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.5) Tester l'installation et le robot sur base d'un exemple:</h2>
+<a id="4-tester-linstallation-et-le-robot-sur-base-dun-exemple" class="anchor" href="#4-tester-linstallation-et-le-robot-sur-base-dun-exemple" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4) Tester l'installation et le robot sur base d'un exemple:</h2>
 
 <p>TODO</p>
 
 <h2>
-<a id="36-télécharger-le-programme-dans-le-robot" class="anchor" href="#36-t%C3%A9l%C3%A9charger-le-programme-dans-le-robot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.6) Télécharger le programme dans le robot:</h2>
+<a id="5-télécharger-le-programme-dans-le-robot" class="anchor" href="#5-t%C3%A9l%C3%A9charger-le-programme-dans-le-robot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5) Télécharger le programme dans le robot:</h2>
+
+<p>TODO</p>
 
 <h1>
 <a id="4-comment-programmer-son-robot" class="anchor" href="#4-comment-programmer-son-robot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4) Comment programmer son robot :</h1>
@@ -251,13 +253,13 @@ pilot<span class="pl-k">.</span>stop();           <span class="pl-c">// Arrêter
 <p>Elle fournit la condition d'activation qui détermine quand cette tâche doit être initiée. On peut vouloir qu'une action soit activée si un obstacle se trouve à moins de 25cm (voir exemple ci-dessous), ou si le capteur tactile est pressé. On peut également vérifier des conditions multiples. Exemple : La tâche est activée si, à la fois le capteur photosensible détecte une ligne noire ET si la valeur booléenne d'une variable est à true. Pour que la tâche soit activée, il faut que la valeur retournée par la méthode <strong>takecontrol()</strong> soit <strong>true</strong>. </p>
 
 <h4>
-<a id="411-la-méthode-action" class="anchor" href="#411-la-m%C3%A9thode-action" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.1.1) La méthode <strong>action()</strong>
+<a id="412-la-méthode-action" class="anchor" href="#412-la-m%C3%A9thode-action" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.1.2) La méthode <strong>action()</strong>
 </h4>
 
 <p>Elle définit l'action que cette tâche doit accomplire (voir exemple ci-dessous). Cette méthode est appelée dès que la tâche devient active. </p>
 
 <h4>
-<a id="411-la-méthode-suppress" class="anchor" href="#411-la-m%C3%A9thode-suppress" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.1.1) La méthode <strong>suppress()</strong>
+<a id="413-la-méthode-suppress" class="anchor" href="#413-la-m%C3%A9thode-suppress" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.1.3) La méthode <strong>suppress()</strong>
 </h4>
 
 <p>Cette méthode permet la suppression (l'arrêt) de l'action en cours d'exécution. Elle permet aussi de mettre à jour des données avant la fin de la tâche. Elle est appelée par l'<strong>Arbitrator</strong> sur la tâche en cours si la méthode <strong>takeControl()</strong> d'une tâche plus prioritaire retourne <strong>true</strong>. Si cette tâche arrêtée est réactivée plus tard durant l'exéction du programme, la méthode <strong>action()</strong> sera à nouveau exécutée depuis le début et non depuis l'endroit où elle avait été arrêtée précédemment.  </p>
@@ -350,7 +352,7 @@ Attention : le bon fonctionnement de ce mécanisme dépend du fait que la métho
 <p>A tout moment, une seule tâche est activée ; une nouvelle tâche ne peut s'enclencher que lorsque la tâche en cours s'interrompt. Pour ce faire, le contrôleur appelle uniquement <strong>suppress()</strong> de la tâche en cours (moins prioritaire), puis appelle <strong>action()</strong> de la tâche à activer. Il ne peut pas forcer l'arrêt de l'exécution de action. Il est donc important de bien appliquer le mécanisme de suppression des tâches décrit précédemment. </p>
 
 <h1>
-<a id="2-remarques-et-conseils" class="anchor" href="#2-remarques-et-conseils" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2) Remarques et conseils:</h1>
+<a id="5-remarques-et-conseils" class="anchor" href="#5-remarques-et-conseils" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5) Remarques et conseils:</h1>
 
 <p>Un exemple complet nommé <strong>SimpleController</strong>, dont sont tirés les extraits présentés ici, est disponible sur <a href="https://github.com/NDetienne/ProjetP1">GitHub</a>. Utilisez-le comme point de départ. </p>
 
@@ -369,7 +371,7 @@ Attention : le bon fonctionnement de ce mécanisme dépend du fait que la métho
 <p>Les senseurs, moteurs et pièces mécaniques appartiennent au domaine de la physique : leur précision peut donc varier, une étape de calibrage peut être nécessaire... </p>
 
 <h1>
-<a id="3-documentation-" class="anchor" href="#3-documentation-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3) Documentation :</h1>
+<a id="6-documentation-" class="anchor" href="#6-documentation-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6) Documentation :</h1>
 
 <ol>
 <li><p><a href="http://isn.codelab.info/site/assets/files/1637/guide_nxt.pdf">Manuel de l’utilisateur NXT</a></p></li>
