@@ -97,12 +97,39 @@ Bouton gris foncé : pour éteindre ou retourner en arrière. </p>
 <h2>
 <a id="4-tester-linstallation-et-le-robot-sur-base-dun-exemple" class="anchor" href="#4-tester-linstallation-et-le-robot-sur-base-dun-exemple" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4) Tester l'installation et le robot sur base d'un exemple:</h2>
 
-<p>TODO</p>
+<p>Afin de tester, à la fois l'installation de l'extension et le matériel que vous avez reçu vous pouvez télécharger le programme de test (SimpleControler) présent sur gitHub.  </p>
+
+<ul>
+<li>Téléchargez et décompressez l'archive dans un nouveau répertoire (exemple : /home/VOTRE_LOGIN/Documents/Projet-P1/) </li>
+<li>Ouvrez le projet SimpleController dans Bluej (Project – Open Project – SimpleController ).</li>
+<li>Compilez-le : clic droit sur la classe principale, possédant la méthode main (SimpleController dans ce cas-ci) et sélectionnez  NXJ  - NXJ-Compile . Ceci aura généré un fichier dont l'extension est « .nxj ».</li>
+</ul>
+
+<p><img src="https://github.com/UCL-INGI/Projet-P1/blob/gh-pages/images/manuel/bluej1.png" alt="alim"></p>
+
+<p><img src="https://github.com/UCL-INGI/Projet-P1/blob/gh-pages/images/manuel/bluej2.png" alt="alim"></p>
+
+<p>En cas d'erreur, vérifiez la configuration de Bluej :
+Tools – Preferences – Librairies : il doit y avoir le <strong>classes.jar</strong> et il doit être dans le status <strong>loaded</strong>. Si ce n'est pas le cas, il faut l'ajouter (path = /opt/leJOS_NXJ/lib/nxt/classes.jar) et redémarrer Bluej.
+Dans Tools – Preferences – Extensions la variable <strong>NXJ_HOME</strong> doit être égale à <strong>/opt/leJOS_NXJ</strong></p>
 
 <h2>
 <a id="5-télécharger-le-programme-dans-le-robot" class="anchor" href="#5-t%C3%A9l%C3%A9charger-le-programme-dans-le-robot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5) Télécharger le programme dans le robot:</h2>
 
-<p>TODO</p>
+<ul>
+<li>Connectez le boitier NXT à l'ordinateur par le câble USB</li>
+<li>Allumez-le (branchez-le également sur le secteur au besoin)</li>
+<li>Poussez le programme sur le robot : clic droit sur la classe principale et sélectionnez NXJ  - NXJ-UploadUSB. Attention, le boitier doit être allumé pendant le transfert !</li>
+<li>Si aucun message d'erreur ne s'affiche le programme est chargé dans le robot.</li>
+</ul>
+
+<p><img src="https://github.com/UCL-INGI/Projet-P1/blob/gh-pages/images/manuel/upload1.png" alt="alim"></p>
+
+<ul>
+<li>Débranchez le câble USB et naviguez dans le menu du robot « Files » jusqu'à retrouver le programme SimpleController. Vous pouvez à présent l'exécuter « Execute Program » (branchez les moteurs et capteurs comme décrit dans le code afin de tester son fonctionnement).</li>
+</ul>
+
+<p><img src="https://github.com/UCL-INGI/Projet-P1/blob/gh-pages/images/manuel/upload2.png" alt="alim"></p>
 
 <h1>
 <a id="4-comment-programmer-son-robot" class="anchor" href="#4-comment-programmer-son-robot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4) Comment programmer son robot :</h1>
