@@ -8,4 +8,4 @@ La page suivante (http://ucl-ingi.github.io/Projet-P1) reprend les informations 
 N'hésitez pas à contribuer à l'évolution de ces informations afin d'améliorer la compréhension des autres étudiants.
 Votre contribution peut se faire en créant des "issues" sur Github.
 
-Merci
+Merci.
