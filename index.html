@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Projet P1 - Partie Informatique</title>
+    <title>Projet P1 - Partie Informatique by UCL-INGI</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-dark.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -25,6 +25,13 @@
         <span id="logo"></span>
 
         <a href="https://github.com/UCL-INGI/Projet-P1" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/UCL-INGI/Projet-P1/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/UCL-INGI/Projet-P1/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
       </div><!-- end banner -->
 
     <div class="wrapper">
@@ -33,13 +40,13 @@
       </nav>
       <section>
         <h1>
-<a id="1-comment-programmer-son-robot" class="anchor" href="#1-comment-programmer-son-robot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1) Comment programmer son robot</h1>
+<a id="1-comment-programmer-son-robot" class="anchor" href="#1-comment-programmer-son-robot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1) Comment programmer son robot :</h1>
 
 <p>La librairie concernant le fonctionnement des robots Lego est détaillée à <a href="http://lejos.sourceforge.net/nxt/nxj/api/index.html">cette page</a>.
 Celle-ci contient de nombreuses classes spécifiques aux fonctionnalités des Lego Minstorms, groupées dans les packages dont le nom commence par « lejos » (n’oubliez pas les « import » correspondants dans votre programme !). Ce tutoriel n'a pas pour but de détailler toutes les possibilités de ces classes, mais donne un aperçu succinct et partiel des possibilités offertes par ces classes et méthodes. Ce qui suit est donc une entrée en matière suffisante pour la réalisation du projet P1.</p>
 
-<h1>
-<a id="2-les-senseurs-" class="anchor" href="#2-les-senseurs-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2) Les senseurs</h1>
+<h2>
+<a id="1-les-senseurs-" class="anchor" href="#1-les-senseurs-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1) Les senseurs :</h2>
 
 <p>La classe <strong>lejos.nxt.SensorPort</strong> représente un port d’entrée du NXT. Il y a quatre instances prédéfinies de la classe <strong>SensorPort</strong>, correspondant aux quatre ports d'entrée : <strong>SensorPort.S1</strong>, <strong>SensorPort.S2</strong>, <strong>SensorPort.S3</strong> et <strong>SensorPort.S4</strong>. 
 Il existe également une classe correspondant à chaque type de senseur : </p>
@@ -66,8 +73,8 @@ Il existe également une classe correspondant à chaque type de senseur : </p>
           <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-s"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span> <span class="pl-k">+</span> sonic<span class="pl-k">.</span>getDistance());      <span class="pl-c">// affiche la distance vue par le capteur à ultrasons </span>
 } </pre></div>
 
-<h1>
-<a id="3-les-moteurs-" class="anchor" href="#3-les-moteurs-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3) Les moteurs</h1>
+<h2>
+<a id="2-les-moteurs-" class="anchor" href="#2-les-moteurs-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2) Les moteurs :</h2>
 
 <p>La classe <strong>lejos.nxt.Motor</strong> permet d'accéder aux moteurs NXT. Elle fournit trois instances prédéfinies (de type <strong>NXTRegulatedMotor</strong>), correspondant aux trois ports de sortie du NXT : <strong>Motor.A</strong>, <strong>Motor.B</strong> et <strong>Motor.C</strong>.
 La classe <strong>NXTRegulatedMotor</strong> représente un moteur. La méthode <strong>setSpeed</strong> permet d’ajuster la vitesse du moteur. Les moteurs NXT sont équipés d’un capteur de rotation intégré (tachymètre) qui permet d’offrir une large palette de méthodes différentes. Les méthodes <strong>getTachoCount()</strong> et <strong>resetTachoCount()</strong> permettent de lire et de remettre à zéro le compteur de rotation. Les autres méthodes, telles que <strong>rotate()</strong>, utilisent également ce compteur pour contrôler précisément le nombre de rotations du moteur. 
@@ -113,8 +120,8 @@ Les méthodes non-bloquantes <strong>forward()</strong> et <strong>backward()</s
       <span class="pl-c1">LCD</span><span class="pl-k">.</span>drawInt(angle,<span class="pl-c1">0</span>,<span class="pl-c1">0</span>);                  <span class="pl-c">// et l'afficher. </span>
 } </pre></div>
 
-<h1>
-<a id="4-pilotage-dun-robot-roulant-" class="anchor" href="#4-pilotage-dun-robot-roulant-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4) Pilotage d'un robot roulant</h1>
+<h2>
+<a id="3-pilotage-dun-robot-roulant-" class="anchor" href="#3-pilotage-dun-robot-roulant-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3) Pilotage d'un robot roulant :</h2>
 
 <p>La classe <strong>lejos.robotics.navigation.DifferentialPilot</strong> permet de piloter un robot roulant avec deux roues sur un même axe, contrôlées par deux moteurs séparés (châssis de type « chaise roulante ») et une roue libre dite « folle »: 
 Les constructeurs permettent de déclarer la géométrie du châssis. Les paramètres de distance peuvent être dans une unité quelconque, pourvu que cette unité soit la même dans tout le programme.</p>
@@ -150,8 +157,8 @@ pilot<span class="pl-k">.</span>arc(<span class="pl-k">-</span><span class="pl-c
 } 
 pilot<span class="pl-k">.</span>stop();           <span class="pl-c">// Arrêter le robot. </span></pre></div>
 
-<h1>
-<a id="5-contrôle-par-tâches-" class="anchor" href="#5-contr%C3%B4le-par-t%C3%A2ches-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5) Contrôle par tâches</h1>
+<h2>
+<a id="4-contrôle-par-tâches-" class="anchor" href="#4-contr%C3%B4le-par-t%C3%A2ches-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4) Contrôle par tâches :</h2>
 
 <p>Un programme qui a pour but de contrôler un robot doit être réactif : il doit pouvoir adapter son comportement en fonction de l'évolution du monde physique dans lequel il évolue (repères extérieurs, obstacles, vitesse des moteurs, etc.). Réaliser un tel programme sous forme d'une cascade de conditions et de boucles peut paraître simple et intuitif mais conduit rapidement à du « code spaghetti » : un enchevêtrement inextricable de cas particuliers, difficile à lire, à maintenir et à mettre au point. </p>
 
@@ -169,26 +176,26 @@ pilot<span class="pl-k">.</span>stop();           <span class="pl-c">// Arrêter
 
 <p>Ces tâches sont en ordre croissant de priorité : la tâche 1 s'exécutant tant que les autres tâches (plus prioritaires) ne sont pas activées.</p>
 
-<h2>
-<a id="51-définir-une-tâche" class="anchor" href="#51-d%C3%A9finir-une-t%C3%A2che" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.1) Définir une tâche</h2>
+<h3>
+<a id="41-définir-une-tâche" class="anchor" href="#41-d%C3%A9finir-une-t%C3%A2che" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.1) Définir une tâche</h3>
 
 <p>Chaque tâche est définie par trois éléments, spécifiés par trois méthodes de l'interface Behavior : </p>
 
-<h3>
-<a id="511-la-méthode-takecontrol" class="anchor" href="#511-la-m%C3%A9thode-takecontrol" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.1.1) La méthode <strong>takeControl()</strong>
-</h3>
+<h4>
+<a id="411-la-méthode-takecontrol" class="anchor" href="#411-la-m%C3%A9thode-takecontrol" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.1.1) La méthode <strong>takeControl()</strong>
+</h4>
 
 <p>Elle fournit la condition d'activation qui détermine quand cette tâche doit être initiée. On peut vouloir qu'une action soit activée si un obstacle se trouve à moins de 25cm (voir exemple ci-dessous), ou si le capteur tactile est pressé. On peut également vérifier des conditions multiples. Exemple : La tâche est activée si, à la fois le capteur photosensible détecte une ligne noire ET si la valeur booléenne d'une variable est à true. Pour que la tâche soit activée, il faut que la valeur retournée par la méthode <strong>takecontrol()</strong> soit <strong>true</strong>. </p>
 
-<h3>
-<a id="511-la-méthode-action" class="anchor" href="#511-la-m%C3%A9thode-action" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.1.1) La méthode <strong>action()</strong>
-</h3>
+<h4>
+<a id="411-la-méthode-action" class="anchor" href="#411-la-m%C3%A9thode-action" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.1.1) La méthode <strong>action()</strong>
+</h4>
 
 <p>Elle définit l'action que cette tâche doit accomplire (voir exemple ci-dessous). Cette méthode est appelée dès que la tâche devient active. </p>
 
-<h3>
-<a id="511-la-méthode-suppress" class="anchor" href="#511-la-m%C3%A9thode-suppress" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.1.1) La méthode <strong>suppress()</strong>
-</h3>
+<h4>
+<a id="411-la-méthode-suppress" class="anchor" href="#411-la-m%C3%A9thode-suppress" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.1.1) La méthode <strong>suppress()</strong>
+</h4>
 
 <p>Cette méthode permet la suppression (l'arrêt) de l'action en cours d'exécution. Elle permet aussi de mettre à jour des données avant la fin de la tâche. Elle est appelée par l'<strong>Arbitrator</strong> sur la tâche en cours si la méthode <strong>takeControl()</strong> d'une tâche plus prioritaire retourne <strong>true</strong>. Si cette tâche arrêtée est réactivée plus tard durant l'exéction du programme, la méthode <strong>action()</strong> sera à nouveau exécutée depuis le début et non depuis l'endroit où elle avait été arrêtée précédemment.  </p>
 
@@ -257,8 +264,8 @@ pilot<span class="pl-k">.</span>stop();           <span class="pl-c">// Arrêter
     } 
 } </pre></div>
 
-<h2>
-<a id="52-créer-un-contrôleur" class="anchor" href="#52-cr%C3%A9er-un-contr%C3%B4leur" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5.2) Créer un contrôleur</h2>
+<h3>
+<a id="42-créer-un-contrôleur" class="anchor" href="#42-cr%C3%A9er-un-contr%C3%B4leur" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.2) Créer un contrôleur</h3>
 
 <p>La classe <strong>Arbitrator</strong> permet de construire et d'activer un contrôleur par tâche. Son constructeur prend en paramètre un tableau contenant les tâches que le robot sera succeptible d'effectuer et que l'<strong>Arbitrator</strong> devra gérer. Les tâches doivent être ordonnées par <em>ordre croissant de priorité</em>. La méthode <strong>start()</strong> permet d'activer l'<strong>Arbitrator</strong>. </p>
 
@@ -280,9 +287,9 @@ Attention : le bon fonctionnement de ce mécanisme dépend du fait que la métho
 <p>A tout moment, une seule tâche est activée ; une nouvelle tâche ne peut s'enclencher que lorsque la tâche en cours s'interrompt. Pour ce faire, le contrôleur appelle uniquement <strong>suppress()</strong> de la tâche en cours (moins prioritaire), puis appelle <strong>action()</strong> de la tâche à activer. Il ne peut pas forcer l'arrêt de l'exécution de action. Il est donc important de bien appliquer le mécanisme de suppression des tâches décrit précédemment. </p>
 
 <h1>
-<a id="6-remarques-et-conseils" class="anchor" href="#6-remarques-et-conseils" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6) Remarques et conseils</h1>
+<a id="2-remarques-et-conseils" class="anchor" href="#2-remarques-et-conseils" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2) Remarques et conseils:</h1>
 
-<p>Un exemple complet nommé <strong>SimpleController</strong>, dont sont tirés les extraits présentés ici, est disponible sur <a href="https://github.com/UCL-INGI/Projet-P1">GitHub</a>. Utilisez-le comme point de départ. </p>
+<p>Un exemple complet nommé <strong>SimpleController</strong>, dont sont tirés les extraits présentés ici, est disponible sur <a href="https://github.com/NDetienne/ProjetP1">GitHub</a>. Utilisez-le comme point de départ. </p>
 
 <p>Respectez bien les recommandations suivantes concernant la synchronisation afin d'éviter des problèmes de blocages et de conflits difficiles à diagnostiquer : </p>
 
@@ -299,17 +306,18 @@ Attention : le bon fonctionnement de ce mécanisme dépend du fait que la métho
 <p>Les senseurs, moteurs et pièces mécaniques appartiennent au domaine de la physique : leur précision peut donc varier, une étape de calibrage peut être nécessaire... </p>
 
 <h1>
-<a id="7-documentation-" class="anchor" href="#7-documentation-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>7) Documentation</h1>
+<a id="3-documentation-" class="anchor" href="#3-documentation-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3) Documentation :</h1>
 
 <ol>
 <li><p><a href="http://isn.codelab.info/site/assets/files/1637/guide_nxt.pdf">Manuel de l’utilisateur NXT</a></p></li>
 <li><p><a href="http://www.lejos.org/rcx/tutorial/index.html">The leJOS NXJ Tutorial.</a> </p></li>
 <li><p><a href="http://lejos.sourceforge.net/nxt/nxj/api/index.html">The leJOS NXJ API.</a> </p></li>
-<li><p>Pour un exemple complet, voir le programme SimpleController sur <a href="https://github.com/UCL-INGI/Projet-P1">GitHub</a></p></li>
+<li><p>Pour un exemple complet, voir le programme SimpleController sur <a href="https://github.com/NDetienne/ProjetP1">GitHub</a></p></li>
 </ol>
       </section>
       <footer>
-        <p>Project maintained by <a href="https://github.com/NDetienne">Nicolas Detienne</a></p>
+        <p>Project maintained by <a href="https://github.com/UCL-INGI">UCL-INGI</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
       </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
