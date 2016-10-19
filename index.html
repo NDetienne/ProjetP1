@@ -107,12 +107,76 @@ Pour son alimentation, le NXT a une batterie lithium rechargeable et peut égale
 
 <h3>
 <a id="331-via-virtualbox" class="anchor" href="#331-via-virtualbox" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.3.1) Via VirtualBox</h3>
-<p>Via VirtualBox vous devriez rapidement savoir programmer votre robot sur votre portable.
+<p>Via VirtualBox vous devriez rapidement savoir programmer votre robot depuis votre portable sans avoir à vous soucier de l'installer des différents composants nécessaires.
 <p>Si vous désirez installer Bluej sur votre portable vous pouvez utiliser l'image d'une installation Linux via VirtualBox. L'UCL (SISE) met à votre disposition l'image VirtualBox d'une installation de Bluej et NXJ préinstallé sous Linux (Fedora).
 Pour faciliter votre installation de l'image sous Virtualbox, une vidéo a également été faite vous montrant, pas à pas, les étapes à suivre.
 <h3>
 <a id="332-directement-sur-votre-portable" class="anchor" href="#332-directement-sur-votre-portable" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.3.2) Directement sur votre portable</h3>
-<p>Cette methode est plus fastidieuse, mais il est possible d'installer Bluej et les librairies nécessaires pour compiler votre programme et l'uploaer sur la brique directement sur votre portable.
+<p>Cette methode est plus fastidieuse, mais il est possible d'installer sur votre portable Bluej et les librairies nécessaires pour compiler votre programme et l'uploader sur la brique.
+
+<h4>
+<a id="3321-Sous-Linux" class="anchor" href="#3321-Sous-Linux" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.3.2.1) Sous Linux
+</h4>
+<ul>
+<li> Il faut commencer par installer les paquets dont Lejos NXJ aura besoin. Il s'agit de Development files for libusb (libusb-devel) et Development Libraries for Bluetooth applications (bluez-libs-devel). Exemple sous RedHat : $ yum install libsusb-devel bluez-libs-devel</li>
+<li> Installez le Java Development Kit (JDK v1.6 ou supérieure)</li>
+<li> Téléchargez Lejos NXJ sur la page du site de Lejos :  http://lejos.sourceforge.net/nxj-downloads.php</li>
+<li> Dé-archivez le fichier .tar.gz dans un répertoire (appelé plus loin NXJ_HOME). </li>
+<li> Initialisez la variable d'environnement JAVA_HOME vers le répertoire d'installation du JDK</li>
+<li> Initialisez la variable d'environnement NXJ_HOME vers le répertoire d'installation (4ème point de cette liste)</li>
+<li> Ajoutez $JAVA_HOME/bin et $NXJ_HOME/bin à la variable d'environnement PATH. Par facilité ces trois derniers points peuvent se faire via le fichier ~/.bashrc comme ci-dessous :</li>
+<p><img src="images/manuel/installLinux1.png" alt="installLinux1"></p>
+<li> Ouvrez un terminal et construisez Lejos NXJ. Pour ce faire, allez dans le répertoire d'installation de Lejos NXJ (NXJ_HOME/build) et exécutez la commande ant. Si tous les paquets dont il dépend sont installés, Lejos NXJ est construit sans aucune erreur.</li>
+<li> Passons à présent à l'installation de l'extension Lejos NXT pour Bluej</li>
+  <ol>
+  <li>Téléchargez le fichier LeJOSNXTExtension.jar se trouvant sur Moodle</li>
+  <li>Sauvegardez ce .jar dans le répertoire d'extensions de Bluej <path_to_bluej>/Bluej/lib/extensions/ 
+Si vous ne connaissez pas le path, lancer une recherche (commande : find / -name  bluej)</li>
+<p><img src="images/manuel/installLinux2.png" alt="installLinux2"></p>
+   
+  <li>Démarrez Bluej</li>
+  <li>Cliquez sur Tools – Preferences...</li>
+  <li>Cliquez sur l'onglet Libraries puis sur le bouton Add</li>
+<p><img src="images/manuel/installLinux3.png" alt="installLinux3"></p>
+  <li>Recherchez le répertoire <NXJ_HOME>/lib et sélectionnez le fichier classes.jar </li>
+  <li> Validez. Le statut de la librairie est Not loaded. C'est normal elle sera chargée au prochain redémarrage de Bluej.</li>
+<p><img src="images/manuel/installLinux4.png" alt="installLinux4"></p>
+  <li>Cliquez à présent sur l'onglet Extensions (Tools – Preferences...) et encodez la localisation de lejos_nxt (NXT_HOME) comme ci-dessous :</li>
+<p><img src="images/manuel/installLinux5.png" alt="installLinux5"></p>
+  <li>La configuration est finie, redémarrez Bluej.</li>
+  <li>Vous pouvez à présent compiler des programmes et les charger dans la brique NXT.</li>
+  </ol>
+   <li>Il faut être root pour pouvoir accéder en lecture et écriture au NXT par USB. Si vous ne l'êtes pas exécutez la commande suivante :
+$ sudo chmod -R 777 /dev/bus/usb</li>
+</ul>
+
+<h4>
+<a id="3322-Sous-Windows" class="anchor" href="#3321-Sous-Windows" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.3.2.1) Sous Windows
+</h4>
+<ul>
+<li>1) Installez le JDK Java en 32-bit (x86) peu importe l’architecture de son système. Vous pouvez le télécharger ici : http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html</li>
+<li>Installez la dernière version de LeJOS (http://sourceforge.net/projects/lejos/files/lejos-NXJ/)</li>
+<ol>
+  <li>Acceptez le contrôle utilisateur (permission administrateur)</li>
+  <li>Next > Sélectionnez le JDK installé (32-bit).</li>
+     <p><img src="images/manuel/installWin1.png" alt="installWin1"></p>
+  <li>Appuyez 4 fois sur Next >  Si message d’erreur apparaît disant qu’une ancienne version est déjà installée, cliquez sur ok. </li>
+  <li>Install >   A la fin, décochez le reset flash utility</li>
+</ol>
+<li>Installez un driver USB. Ils sont disponibles sur Moodle (FSAB1401 – Documents et liens – NXT)</li>
+<li>Installez l'extension de Bluej (voir partie Linux)</li>
+<li>Modifiez les variables globales (permission administrateur) :</li>
+<ol>
+<li>Allez sur Panneau de configuration </li>
+<li>Système et Sécurité   > Système   > Paramètres et système avancés > (onglet) Paramètres système avancés </li>
+<li>Cliquez sur variable environnement </li>
+<li>Dans variables système, sélectionnez « Path » et modifiez en ajoutant un point-virgule à fin de ce qui précède puis le chemin du JDK (exemple :   C:\Program Files (x86)\Java\jdk1.7.0_45\bin )</li>
+<li>Tout confirmer </li>
+<li>Redémarrez l’ordinateur </li>
+</ol>
+
+</ul>
+
 
 
 <h2>
