@@ -25,13 +25,6 @@
         <span id="logo"></span>
 
         <a href="https://github.com/UCL-INGI/Projet-P1" class="button fork"><strong>View On GitHub</strong></a>
-        <div class="downloads">
-          <span>Downloads:</span>
-          <ul>
-            <li><a href="https://github.com/UCL-INGI/Projet-P1/zipball/master" class="button">ZIP</a></li>
-            <li><a href="https://github.com/UCL-INGI/Projet-P1/tarball/master" class="button">TAR</a></li>
-          </ul>
-        </div>
       </div><!-- end banner -->
 
     <div class="wrapper">
@@ -109,9 +102,12 @@ Pour son alimentation, le NXT a une batterie lithium rechargeable et peut égale
 
 <h3>
 <a id="331-via-virtualbox" class="anchor" href="#331-via-virtualbox" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.3.1) Via VirtualBox</h3>
-<p>Via VirtualBox vous devriez rapidement savoir programmer votre robot depuis votre portable sans avoir à vous soucier de l'installer des différents composants nécessaires.
-<p>Si vous désirez installer Bluej sur votre portable vous pouvez utiliser l'image d'une installation Linux via VirtualBox. L'UCL (SISE) met à votre disposition l'image VirtualBox d'une installation de Bluej et NXJ préinstallé sous Linux (Fedora).
-Pour faciliter votre installation de l'image sous Virtualbox, une vidéo a également été faite vous montrant, pas à pas, les étapes à suivre.
+<p>Via VirtualBox, vous devriez rapidement savoir programmer votre robot depuis votre portable sans avoir à vous soucier de l'installer de Bluej et du module NXJ.
+<p>Il vous suffit d'installer VirtualBox puis de charger l'image de la machine virtuelle qui a été configurée pour vous avec Bluej et NXJ sous Linux (Fedora). L'UCL (SISE) met à votre disposition cette image VirtualBox ainsi qu'une vidéo a également été faite vous montrant, pas à pas, les étapes à suivre pour charger cette machine virtuelle dans Virtualbox.
+<p>Virtualbox est téléchargeable ici (installer une version supérieure à V.5.0.22): <a href="https://www.virtualbox.org/wiki/Downloads" target=_blank>https://www.virtualbox.org/wiki/Downloads</a>
+<p>L'image Virtualbox et la vidéo se trouvent sur le montage Oasis suivant: //oasis.uclouvain.be/dfs/groups/d/did-sst-commun/EPL/Virtualbox_Didac_Fedora (monté automatiquement sur vos postes de travail en salles)
+<p>L'aide pour accéder à ce montage se trouve ici: <a href="http://www.uclouvain.be/675709.html" target=_blank>http://www.uclouvain.be/675709.html</a>
+
 <h3>
 <a id="332-directement-sur-votre-portable" class="anchor" href="#332-directement-sur-votre-portable" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.3.2) Directement sur votre portable</h3>
 <p>Cette methode est plus fastidieuse, mais il est possible d'installer sur votre portable Bluej et les librairies nécessaires pour compiler votre programme et l'uploader sur la brique.
@@ -184,7 +180,7 @@ $ sudo chmod -R 777 /dev/bus/usb</li>
 <h2>
 <a id="34-tester-linstallation-et-le-robot-sur-base-dun-exemple" class="anchor" href="#34-tester-linstallation-et-le-robot-sur-base-dun-exemple" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.4) Tester l'installation et le robot sur base d'un exemple</h2>
 
-<p>Afin de tester, à la fois l'installation de l'extension et le matériel que vous avez reçu vous pouvez télécharger le programme de test (SimpleControler) présent sur <a href="https://github.com/UCL-INGI/Projet-P1">GitHub</a>.  </p>
+<p>Afin de tester, à la fois l'installation de l'extension et le matériel que vous avez reçu vous pouvez télécharger le programme de test (SimpleControler) présent sur <a href="https://github.com/UCL-INGI/Projet-P1" target=_blank>GitHub</a>.  </p>
 
 <ul>
 <li>Téléchargez et décompressez l'archive dans un nouveau répertoire (exemple : /home/VOTRE_LOGIN/Documents/Projet-P1/) </li>
@@ -221,7 +217,7 @@ Dans Tools – Preferences – Extensions la variable <strong>NXJ_HOME</strong> 
 <h1>
 <a id="4-comment-programmer-son-robot" class="anchor" href="#4-comment-programmer-son-robot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4) Comment programmer son robot :</h1>
 
-<p>La librairie concernant le fonctionnement des robots Lego est détaillée à <a href="http://lejos.sourceforge.net/nxt/nxj/api/index.html">cette page</a>.
+<p>La librairie concernant le fonctionnement des robots Lego est détaillée à <a href="http://lejos.sourceforge.net/nxt/nxj/api/index.html" target=_blank>cette page</a>.
 Celle-ci contient de nombreuses classes spécifiques aux fonctionnalités des Lego Minstorms, groupées dans les packages dont le nom commence par « lejos » (n’oubliez pas les « import » correspondants dans votre programme !). Ce tutoriel n'a pas pour but de détailler toutes les possibilités de ces classes, mais donne un aperçu succinct et partiel des possibilités offertes par ces classes et méthodes. Ce qui suit est donc une entrée en matière suffisante pour la réalisation du projet P1.</p>
 
 <h2>
@@ -467,7 +463,7 @@ Attention : le bon fonctionnement de ce mécanisme dépend du fait que la métho
 <h1>
 <a id="5-remarques-et-conseils" class="anchor" href="#5-remarques-et-conseils" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5) Remarques et conseils:</h1>
 
-<p>Un exemple complet nommé <strong>SimpleController</strong>, dont sont tirés les extraits présentés ici, est disponible sur <a href="https://github.com/NDetienne/ProjetP1">GitHub</a>. Utilisez-le comme point de départ. </p>
+<p>Un exemple complet nommé <strong>SimpleController</strong>, dont sont tirés les extraits présentés ici, est disponible sur <a href="https://github.com/UCL-INGI/Projet-P1"  target=_blank>GitHub</a>. Utilisez-le comme point de départ. </p>
 
 <p>Respectez bien les recommandations suivantes concernant la synchronisation afin d'éviter des problèmes de blocages et de conflits difficiles à diagnostiquer : </p>
 
@@ -487,16 +483,12 @@ Attention : le bon fonctionnement de ce mécanisme dépend du fait que la métho
 <a id="6-documentation-" class="anchor" href="#6-documentation-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6) Documentation :</h1>
 
 <ol>
-<li><p><a href="http://isn.codelab.info/site/assets/files/1637/guide_nxt.pdf">Manuel de l’utilisateur NXT</a></p></li>
-<li><p><a href="http://www.lejos.org/rcx/tutorial/index.html">The leJOS NXJ Tutorial.</a> </p></li>
-<li><p><a href="http://lejos.sourceforge.net/nxt/nxj/api/index.html">The leJOS NXJ API.</a> </p></li>
-<li><p>Pour un exemple complet, voir le programme SimpleController sur <a href="https://github.com/NDetienne/ProjetP1">GitHub</a></p></li>
+<li><p><a href="http://isn.codelab.info/site/assets/files/1637/guide_nxt.pdf" target=_blank>Manuel de l’utilisateur NXT</a></p></li>
+<li><p><a href="http://www.lejos.org/rcx/tutorial/index.html" target=_blank>The leJOS NXJ Tutorial.</a> </p></li>
+<li><p><a href="http://lejos.sourceforge.net/nxt/nxj/api/index.html" target=_blank>The leJOS NXJ API.</a> </p></li>
+<li><p>Pour un exemple complet, voir le programme SimpleController sur <a href="https://github.com/UCL-INGI/Projet-P1" target=_blank>GitHub</a></p></li>
 </ol>
       </section>
-      <footer>
-        <p>Project maintained by <a href="https://github.com/UCL-INGI">UCL-INGI</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
-      </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
