@@ -7,6 +7,9 @@ La page suivante (http://ucl-ingi.github.io/Projet-P1) reprend les informations 
  
 Veillez à bien lire et comprendre cette documentation AVANT de débuter la programmation.
 
+Un cours sur INGInious a été mis en place pour que vous puissiez vérifier vos acquis, avant de vous lancer dans la programmation:
+https://inginious.info.ucl.ac.be/course/LFSAB1501
+
 N'hésitez pas à contribuer à l'évolution de ces informations afin d'améliorer la compréhension des autres étudiants.
 
 Merci.
