@@ -231,12 +231,17 @@ Il existe également une classe correspondant à chaque type de senseur : </p>
 
 <ul>
 <li>Capteur tactile : classe <strong>lejos.nxt.TouchSensor</strong>
+<p><center><img src="images/manuel/touchsensor.png" alt="touch"></center></p>
+
 </li>
 <li>Capteur sonore : classe <strong>lejos.nxt.SoundSensor</strong>
+<p><center><img src="images/manuel/soundsensor.png" alt="sound"></center></p>
 </li>
 <li>Capteur photosensible : classe <strong>lejos.nxt.LightSensor</strong>
+<p><center><img src="images/manuel/lightsensor.png" alt="light"></center></p>
 </li>
 <li>Capteur de distance à ultrasons : classe <strong>lejos.nxt.UltrasonicSensor</strong>
+<p><center><img src="images/manuel/ultrasonicsensor.png" alt="ultra"></center></p>
 </li>
 </ul>
 
@@ -254,8 +259,11 @@ Il existe également une classe correspondant à chaque type de senseur : </p>
 <h2>
 <a id="42-les-moteurs-" class="anchor" href="#42-les-moteurs-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.2) Les moteurs</h2>
 
-<p>La classe <strong>lejos.nxt.Motor</strong> permet d'accéder aux moteurs NXT. Elle fournit trois instances prédéfinies (de type <strong>NXTRegulatedMotor</strong>), correspondant aux trois ports de sortie du NXT : <strong>Motor.A</strong>, <strong>Motor.B</strong> et <strong>Motor.C</strong>.
-La classe <strong>NXTRegulatedMotor</strong> représente un moteur. La méthode <strong>setSpeed</strong> permet d’ajuster la vitesse du moteur. Les moteurs NXT sont équipés d’un capteur de rotation intégré (tachymètre) qui permet d’offrir une large palette de méthodes différentes. Les méthodes <strong>getTachoCount()</strong> et <strong>resetTachoCount()</strong> permettent de lire et de remettre à zéro le compteur de rotation. Les autres méthodes, telles que <strong>rotate()</strong>, utilisent également ce compteur pour contrôler précisément le nombre de rotations du moteur. 
+<p>La classe <strong>lejos.nxt.Motor</strong> permet d'accéder aux moteurs NXT. Elle fournit trois instances prédéfinies (de type <strong>NXTRegulatedMotor</strong>), correspondant aux trois ports de sortie du NXT : <strong>Motor.A</strong>, <strong>Motor.B</strong> et <strong>Motor.C</strong>.</p>
+<p><center><img src="images/manuel/motor.png" alt="ultra"></center></p>
+
+
+<p>La classe <strong>NXTRegulatedMotor</strong> représente un moteur. La méthode <strong>setSpeed</strong> permet d’ajuster la vitesse du moteur. Les moteurs NXT sont équipés d’un capteur de rotation intégré (tachymètre) qui permet d’offrir une large palette de méthodes différentes. Les méthodes <strong>getTachoCount()</strong> et <strong>resetTachoCount()</strong> permettent de lire et de remettre à zéro le compteur de rotation. Les autres méthodes, telles que <strong>rotate()</strong>, utilisent également ce compteur pour contrôler précisément le nombre de rotations du moteur. 
 Les mouvements du moteur s'effectuent à leur vitesse propre, distincte de (et beaucoup plus lente que) la vitesse d'exécution du programme Java. 
 Deux types de méthodes permettant de commander le mouvement du moteur existent, il s'agit des <strong>méthodes bloquantes</strong> et des <strong>méthodes non-bloquantes</strong> : </p>
 
