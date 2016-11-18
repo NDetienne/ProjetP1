@@ -111,13 +111,25 @@ Elles se donneront les <u><b>lundi, mardi et mercredi de S10</b></u> de 13h à 1
 <p>Il est à noter qu'une version HTTPS de ce montage est également disponible et accessible depuis l'extérieur du réseau de l'UCL. Elle est accessible à l'adresse suivante: <a href="https://rdav.sgsi.ucl.ac.be/dfs/groups/d/did-sst-commun/EPL/Virtualbox_Didac_Fedora/" target="_blank">https://rdav.sgsi.ucl.ac.be/dfs/groups/d/did-sst-commun/EPL/Virtualbox_Didac_Fedora/</a></p>
 <p>Le mot de passe du compte <i>student</i> sous l'image VirtualBox est <i>1234</i>. N'hésitez pas à le modifier dans Applications - Paramètres - Utilisateurs - Mot de passe.</p> 
 <p>Si vous le désirez, vous pouvez créer un nouvel utilisateur, allez dans Applications - Paramètres - Utilisateurs, cliquez sur Déverouiller, entrez le mot de passe <i>1234</i> puis cliquez sur le "+" de la colonne de gauche. Remplissez les différents champs puis validez en cliquant sur "Ajouter".</p>
- 
+<a id="3211-Problemes-rencontrés" class="anchor" href="#3211-Problemes-rencontrés" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.2.1.1) Problèmes rencontrés:</h4>
+<p><i>This kernel requires an x86-64 CPU, but only detected an i686 CPU.</i>
+<ul>
+<li>Sélectionnez "Fedora(64bits)" dans la configuration de votre image VirtualBox (clic droit sur le nom de la machine, puis "configuration", sélectionnez "Général" et l'onglet "Basic" puis le menu déroulant du champ Version.</li>
+<li>Si aucune version 64bits n'est proposée, désactivez Hyper-V si il est actif sur votre Windows</li>
+<li>Si ça ne résoud pas le problème, vérifiez les paramètres de votre BIOS (au démarrage de votre portable), il faut activer "Virtualization Technology" et "VT-d". Ca devrait se trouver dans Advanced BIOS Features puis dans la partie CPU)</li>
+</ul></p>
+<p><i>No NXT found - is it switched on and plugged in (for USB)?</i>
+<ul>
+<li>Suivre la procédure décrite dans la vidéo d'aide à l'installation permettant de partager l'USB avec l'image VirtualBox. Ceci va rendre visible la brique NXT depuis votre machine Fedora.</li>
+<li>Branchez de préférence la brique sur un port USB2, si disponible.</li>
+<li>La brique doit être allumée pendant l'étape 1 ci-dessus ainsi que pendant le téléchargement du programme sur la brique.</li>
+</ul></p>
+
 <h3>
 <a id="322-directement-sur-votre-portable" class="anchor" href="#322-directement-sur-votre-portable" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.2.2) Directement sur votre portable</h3>
 <p>Cette methode est plus fastidieuse, mais il est possible d'installer sur votre portable Bluej et les librairies nécessaires pour compiler votre programme et l'uploader sur la brique.
 <h4>
-<a id="3221-Sous-Linux" class="anchor" href="#3221-Sous-Linux" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.2.2.1) Sous Linux
-</h4>
+<a id="3221-Sous-Linux" class="anchor" href="#3221-Sous-Linux" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.2.2.1) Sous Linux</h4>
 <ul>
 <li> Il faut commencer par installer les paquets dont Lejos NXJ aura besoin. Il s'agit de Development files for libusb (libusb-devel) et Development Libraries for Bluetooth applications (bluez-libs-devel). Exemple sous RedHat : $ yum install libsusb-devel bluez-libs-devel</li>
 <li> Installez le Java Development Kit (JDK v1.6 ou supérieure)</li>
