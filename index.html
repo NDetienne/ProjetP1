@@ -240,17 +240,17 @@ Celle-ci contient de nombreuses classes spécifiques aux fonctionnalités des Le
 Il existe également une classe correspondant à chaque type de senseur : </p>
 
 <ul>
-<li>Capteur tactile : classe <strong>lejos.nxt.TouchSensor</strong>
+<li>Capteur tactile : classe <a href="http://www.lejos.org/nxt/nxj/tutorial/LCD_Sensors/LCD_Sensors.htm#8" target=_blank>lejos.nxt.TouchSensor</a>
 <p><center><img src="images/manuel/touchsensor.png" alt="touch"></center></p>
 
 </li>
-<li>Capteur sonore : classe <strong>lejos.nxt.SoundSensor</strong>
+<li>Capteur sonore : classe  <a href="http://www.lejos.org/nxt/nxj/tutorial/LCD_Sensors/LCD_Sensors.htm#10" target=_blank>lejos.nxt.SoundSensor</a>
 <p><center><img src="images/manuel/soundsensor.png" alt="sound"></center></p>
 </li>
-<li>Capteur photosensible : classe <strong>lejos.nxt.LightSensor</strong>
+<li>Capteur photosensible : classe  <a href="http://www.lejos.org/nxt/nxj/tutorial/LCD_Sensors/LCD_Sensors.htm#9" target=_blank>lejos.nxt.LightSensor</a>
 <p><center><img src="images/manuel/lightsensor.png" alt="light"></center></p>
 </li>
-<li>Capteur de distance à ultrasons : classe <strong>lejos.nxt.UltrasonicSensor</strong>
+<li>Capteur de distance à ultrasons : classe  <a href="http://www.lejos.org/nxt/nxj/tutorial/LCD_Sensors/LCD_Sensors.htm#11" target=_blank>lejos.nxt.UltrasonicSensor</a>
 <p><center><img src="images/manuel/ultrasonicsensor.png" alt="ultra"></center></p>
 </li>
 </ul>
@@ -371,7 +371,7 @@ pilot<span class="pl-k">.</span>stop();           <span class="pl-c">// Arrêter
 <li><p>si un bouton est pressé sur la brique Lego, s'arrêter et mettre fin au programme. </p></li>
 </ol>
 
-<p>Ces tâches sont en ordre croissant de priorité : la tâche 1 s'exécutant tant que les autres tâches (plus prioritaires) ne sont pas activées.</p>
+<p>Ces tâches sont en ordre croissant de priorité : la tâche 1 (moins prioritaire) s'exécutant tant que les autres tâches (plus prioritaires) ne sont pas activées.</p>
 
 <h3>
 <a id="441-définir-une-tâche" class="anchor" href="#441-d%C3%A9finir-une-t%C3%A2che" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.4.1) Définir une tâche</h3>
@@ -383,18 +383,21 @@ pilot<span class="pl-k">.</span>stop();           <span class="pl-c">// Arrêter
 </h4>
 
 <p>Elle fournit la condition d'activation qui détermine quand cette tâche doit être initiée. On peut vouloir qu'une action soit activée si un obstacle se trouve à moins de 25cm (voir exemple ci-dessous), ou si le capteur tactile est pressé. On peut également vérifier des conditions multiples. Exemple : La tâche est activée si, à la fois le capteur photosensible détecte une ligne noire ET si la valeur booléenne d'une variable est à true. Pour que la tâche soit activable, il faut que la valeur retournée par la méthode <strong>takecontrol()</strong> soit <strong>true</strong>. </p>
+<p>Par exemple, si la tâche est d'éviter un obstable, la méthode <strong>takeControl()</strong> retournera <strong>true</strong> quand le robot se trouvera à moins de 15cm d'un obstable.</p>
 
 <h4>
 <a id="4412-la-méthode-action" class="anchor" href="#4412-la-m%C3%A9thode-action" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.4.1.2) La méthode <strong>action()</strong>
 </h4>
 
 <p>Elle définit l'action que cette tâche doit accomplire (voir exemple ci-dessous). Cette méthode est appelée dès que la tâche devient active. </p>
+<p>Par exemple, si la tâche est d'éviter un obstacle, la méthode <strong>action()</strong> fera une marche arrière et un virage à gauche afin d'éviter l'obstable détecté.</p>
 
 <h4>
 <a id="4413-la-méthode-suppress" class="anchor" href="#4413-la-m%C3%A9thode-suppress" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.4.1.3) La méthode <strong>suppress()</strong>
 </h4>
 
 <p>Cette méthode permet la suppression (l'arrêt) de l'action en cours d'exécution. Elle permet aussi de mettre à jour des données avant la fin de la tâche. Elle est appelée par l'<strong>Arbitrator</strong> sur la tâche en cours si la méthode <strong>takeControl()</strong> d'une tâche plus prioritaire retourne <strong>true</strong>. Si cette tâche arrêtée est réactivée plus tard durant l'exéction du programme, la méthode <strong>action()</strong> sera à nouveau exécutée depuis le début et non depuis l'endroit où elle avait été arrêtée précédemment.  </p>
+<p>La méthode <strong>suppress()</strong> doit arrêter immédiatement la tâche en cours (méthode <strong>action()</strong>) et s'exécuter rapidement afin de rendre la main à l'arbitrator sans tarder.</p>
 
 <p>Pour définir une tâche, il faut réaliser une implémentation de cette interface définissant ces trois méthodes. Il s'agit d'une forme de programmation événementielle : on fournit au système de contrôle du robot différentes tâches à exécuter lorsque différents événements surviennent. Par exemple, la tâche suivante effectue une manoeuvre lorsqu'un obstacle est détecté par le senseur à ultrasons (sonar) : </p>
 
