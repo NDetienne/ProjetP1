@@ -467,7 +467,7 @@ pilot<span class="pl-k">.</span>stop();           <span class="pl-c">// Arrêter
 <h3>
 <a id="442-créer-un-contrôleur" class="anchor" href="#442-cr%C3%A9er-un-contr%C3%B4leur" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.4.2) Créer un contrôleur</h3>
 
-<p>La classe <strong>Arbitrator</strong> permet de construire et d'activer un contrôleur par tâche. Son constructeur prend en paramètre un tableau contenant les tâches que le robot sera succeptible d'effectuer et que l'<strong>Arbitrator</strong> devra gérer. Les tâches doivent être ordonnées par <em><u>ordre croissant de priorité</u></em>. La méthode <strong>start()</strong> permet d'activer l'<strong>Arbitrator</strong>. </p>
+<p>La classe <strong>Arbitrator</strong> permet de construire et d'activer un contrôleur par tâche. Son constructeur prend en paramètre un tableau contenant les tâches que le robot sera succeptible d'effectuer et que l'<strong>Arbitrator</strong> devra gérer. Les tâches doivent être ordonnées par <em><u>ordre croissant de priorité</u></em>. La méthode <strong>start()</strong> permet d'activer l'<strong>Arbitrator</strong>. Il vous est demandé de n'avoir qu'un seul arbitrator pour votre projet.</p>
 
 <p>Exemple : </p>
 
@@ -487,7 +487,14 @@ Attention : le bon fonctionnement de ce mécanisme dépend du fait que la métho
 <p>A tout moment, une seule tâche est activée ; une nouvelle tâche ne peut s'enclencher que lorsque la tâche en cours s'interrompt. Pour ce faire, le contrôleur appelle uniquement <strong>suppress()</strong> de la tâche en cours (moins prioritaire), puis appelle <strong>action()</strong> de la tâche à activer. Il ne peut pas forcer l'arrêt de l'exécution de action. Il est donc <u>très important</u> de bien appliquer le mécanisme de suppression des tâches décrit précédemment. </p>
 
 <h1>
-<a id="5-remarques-et-conseils" class="anchor" href="#5-remarques-et-conseils" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5) Remarques et conseils</h1>
+<a id="5-erreurs-à-éviter" class="anchor" href="#5-erreurs-à-éviter" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5) Erreurs à éviter</h1>
+<p>• Essayer autant que possible de ne pas dupliquer vos tâches. Voici un exemple de tableau des tâches qui, à sa lecture, laisse supposer que les tâches sont dupliquées. </p>
+<p>A quelques détails près, l'action réalisée par la tâche avancerAller est identique à celle de AvancerRetour, l'action réalisée par eviterAller est identique à eviterRetour etc. Il est donc possible de n'avoir qu'une action "avancer" et tenir compte dans le code de la phase dans laquelle on se trouve.</p><p>
+<div class="highlight highlight-source-java"><pre> <span class="pl-k">Behavior</span>[] taches <span class="pl-k">=</span> { depart, avancerAller, eviterAller, allignerAller, allignerRetour, eviterRetour, avancerRetour, faireAction, stop };       <span class="pl-c"></span> </pre></div>
+</p>
+
+<h1>
+<a id="6-remarques-et-conseils" class="anchor" href="#5-remarques-et-conseils" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6) Remarques et conseils</h1>
 
 <p>Un cours sur <a href="https://inginious.info.ucl.ac.be/course/LFSAB1501" target=_blank>INGInious</a> a été mis en place pour tester vos connaissances sur la programmation Légo, n'hsitez pas à répondre aux QCM. </p>
 
@@ -508,7 +515,7 @@ Attention : le bon fonctionnement de ce mécanisme dépend du fait que la métho
 <p>Les senseurs, moteurs et pièces mécaniques appartiennent au domaine de la physique : leur précision peut donc varier, une étape de calibrage peut être nécessaire... </p>
 
 <h1>
-<a id="6-documentation-" class="anchor" href="#6-documentation-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6) Documentation</h1>
+<a id="7-documentation-" class="anchor" href="#6-documentation-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>7) Documentation</h1>
 
 <ol>
 <li><p><a href="https://inginious.info.ucl.ac.be/course/LFSAB1501" target=_blank>Cours INGInious sur la programmation Légo</a></p></li>
