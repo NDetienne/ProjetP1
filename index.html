@@ -97,7 +97,7 @@ Pour son alimentation, le NXT a une batterie lithium rechargeable et peut égale
 <p>Lors de ses passages dans vos locaux, le responsable informatique du projet répondra aux questions concernant la partie informatique du projet, la programmation des Légo etc, mais vu le nombre d'étudiants et la diversité des systèmes d'exploitation, aucun support à l'installation de Bluej et de l'extentions NXJ sur votre machine ne sera donné à ce moment là.
 
 <p>
-<p><u>Des permanences</u> spécialement <u>prévues</u> seront données <u>pour</u> vous aider en cas de problème lors de <u>l'installation de Bluej et de l'environnement LeJos BluejNXT sur votre portable</u>. La permanence n'est pas prévue pour installer à votre place, mais bien pour vous aider si vous rencontrer des difficultés.
+<p><u>Des permanences</u> spécialement <u>prévues</u> seront données <u>pour vous aider</u> en cas de problème lors de <u>l'installation de Bluej et de l'environnement LeJos BluejNXT sur votre portable</u>. La permanence n'est pas prévue pour installer à votre place, mais bien pour vous aider si vous rencontrer des difficultés.
 Elles se donneront les <u><b>lundi, mardi et mercredi de S10</b></u> de 13h à 14h au Barb06. Si vous rencontrez des problèmes à l'installation, n'hésitez pas à y venir pour pouvoir commencer à programmer dans les plus brefs délais.
 <p>
 
@@ -107,15 +107,26 @@ Elles se donneront les <u><b>lundi, mardi et mercredi de S10</b></u> de 13h à 1
 <p>Il vous suffit d'installer VirtualBox puis de charger l'image de la machine virtuelle qui a été configurée pour vous avec Bluej et NXJ sous Linux (Fedora). L'UCL (SISE) met à votre disposition cette image VirtualBox ainsi qu'une vidéo qui a été faite pour vous montrer, pas à pas, les étapes à suivre pour charger cette machine virtuelle dans Virtualbox.
 <p>Virtualbox est téléchargeable ici: <a href="https://rdav.sgsi.ucl.ac.be/dfs/groups/d/did-sst-commun/EPL/Virtualbox_Didac_Fedora/" target=_blank>https://rdav.sgsi.ucl.ac.be/dfs/groups/d/did-sst-commun/EPL/Virtualbox_Didac_Fedora/</a>
 <p>L'image de la machine virtuelle <a href="https://rdav.sgsi.ucl.ac.be/dfs/groups/d/did-sst-commun/EPL/Virtualbox_Didac_Fedora/Fedora.vdi" target=_blank>Virtualbox contenant Bluej</a> et la <a href="https://rdav.sgsi.ucl.ac.be/dfs/groups/d/did-sst-commun/EPL/Virtualbox_Didac_Fedora/virtualbox_lejos.mov" target=_blank>vidéo d'installation</a> se trouvent ici: <a href="https://rdav.sgsi.ucl.ac.be/dfs/groups/d/did-sst-commun/EPL/Virtualbox_Didac_Fedora/" target="_blank">https://rdav.sgsi.ucl.ac.be/dfs/groups/d/did-sst-commun/EPL/Virtualbox_Didac_Fedora/</a>. Ce répertoire distant est également monté sur vos postes de travail en salles.<p>
-<p>Le mot de passe du compte <i>student</i> sous l'image VirtualBox est <i>1234</i>. N'hésitez pas à le modifier dans Applications - Paramètres - Utilisateurs - Mot de passe.</p> 
-<p>Si vous le désirez, vous pouvez créer un nouvel utilisateur, allez dans Applications - Paramètres - Utilisateurs, cliquez sur Déverouiller, entrez le mot de passe <i>1234</i> puis cliquez sur le "+" de la colonne de gauche. Remplissez les différents champs puis validez en cliquant sur "Ajouter".</p>
-<a id="3211-Problemes-rencontrés" class="anchor" href="#3211-Problemes-rencontrés" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.2.1.1) Problèmes rencontrés:</h4>
-<p><i>This kernel requires an x86-64 CPU, but only detected an i686 CPU.</i>
+<p>La machine virtuelle ne nécessite pas de mot de passe. À son démarrage, vous serez authentifié automatiquement avec le compte <i>étudiant</i>.</p>
+
+<h4>
+<a id="3211-creer-un-repertoire-partage" class="anchor" href="#3211-creer-un-repertoire-partage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.2.1.1) Créer un répertoire partagé:</h4>
+<p>En créant un répertoire partagé entre votre machine et la machine virtuelle, cela vous permettera de programmer depuis votre machine et d'utiliser la machine virtuelle uniquement pour télécharger votre programme sur le robot.</p>
+
+<p>Pour ce faire, assurez vous que la machine virtuelle est éteinte.
 <ul>
-<li>Sélectionnez "Fedora(64bits)" dans la configuration de votre image VirtualBox (clic droit sur le nom de la machine, puis "configuration", sélectionnez "Général" et l'onglet "Basic" puis le menu déroulant du champ Version.</li>
-<li>Si aucune version 64bits n'est proposée, désactivez Hyper-V si il est actif sur votre Windows</li>
-<li>Si ça ne résoud pas le problème, vérifiez les paramètres de votre BIOS (au démarrage de votre portable), il faut activer "Virtualization Technology" et "VT-d". Ca devrait se trouver dans Advanced BIOS Features puis dans la partie CPU)</li>
-</ul></p>
+  <li>Dans VirtualBox, faites un clique droit sur la machine virtuelle et choisissez <i>Configuration</i>.</li>
+  <li>Choisissez <i>Dossiers partagés</i>, puis cliquez sur l'icone en haut à droite indiquant un dossier avec un signe plus vert.</li>
+  <li>Dans <i>Chemin du dossier</i>, choisissez le répertoire de votre machine que vous souhaitez partager.</li>
+  <li>Dans <i>Nom du dossier</i>, choisissez le nom avec lequelle il apparaitra dans la machine virtuelle.</li>
+  <li>Décochez <i>Lecture seule</i> et cochez <i>Montage automatique</i>.</li>
+  <li>Démarrez la machine virtuelle et ouvrez <i>Système de fichiers</i> se trouvant sur le bureau de celle-ci. Vous y trouverez le contenu de votre dossier partagé.</li>
+</ul>
+</p>
+
+
+<h4>
+<a id="3212-Problemes-rencontrés" class="anchor" href="#3212-Problemes-rencontrés" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.2.1.2) Problèmes rencontrés:</h4>
 <p><i>No NXT found - is it switched on and plugged in (for USB)?</i>
 <ul>
 <li>Suivre la procédure décrite dans la vidéo d'aide à l'installation permettant de partager l'USB avec l'image VirtualBox. Ceci va rendre visible la brique NXT depuis votre machine Fedora.</li>
@@ -129,7 +140,7 @@ Elles se donneront les <u><b>lundi, mardi et mercredi de S10</b></u> de 13h à 1
 <h4>
 <a id="3221-Sous-Linux" class="anchor" href="#3221-Sous-Linux" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.2.2.1) Sous Linux</h4>
 <ul>
-<li> Il faut commencer par installer les paquets dont Lejos NXJ aura besoin. Il s'agit de Development files for libusb (libusb-devel) et Development Libraries for Bluetooth applications (bluez-libs-devel). Exemple sous RedHat : $ yum install libsusb-devel bluez-libs-devel</li>
+<li> Il faut commencer par installer les paquets dont Lejos NXJ aura besoin. Il s'agit de <i>Development files for libusb (libusb-devel)</i> et <i>Development Libraries for Bluetooth applications (bluez-libs-devel)</i>.<br>Exemple sous RedHat : <code>$ yum install libusb-devel bluez-libs-devel</code></li>
 <li> Installez le Java Development Kit (JDK v1.6 ou supérieure)</li>
 <li> Téléchargez Lejos NXJ sur la page du site de Lejos :  http://lejos.sourceforge.net/nxj-downloads.php</li>
 <li> Dé-archivez le fichier .tar.gz dans un répertoire (appelé plus loin NXJ_HOME). </li>
@@ -144,7 +155,7 @@ Elles se donneront les <u><b>lundi, mardi et mercredi de S10</b></u> de 13h à 1
   <li>Sauvegardez ce .jar dans le répertoire d'extensions de Bluej <path_to_bluej>/Bluej/lib/extensions/ 
 Si vous ne connaissez pas le path, lancer une recherche (commande : find / -name  bluej)</li>
 <p><img src="images/manuel/installLinux2.png" alt="installLinux2"></p>
-   
+
   <li>Démarrez Bluej</li>
   <li>Cliquez sur Tools – Preferences...</li>
   <li>Cliquez sur l'onglet Libraries puis sur le bouton Add</li>
@@ -157,8 +168,7 @@ Si vous ne connaissez pas le path, lancer une recherche (commande : find / -nam
   <li>La configuration est finie, redémarrez Bluej.</li>
   <li>Vous pouvez à présent compiler des programmes et les charger dans la brique NXT.</li>
   </ol>
-   <li>Il faut être root pour pouvoir accéder en lecture et écriture au NXT par USB. Si vous ne l'êtes pas exécutez la commande suivante :
-$ sudo chmod -R 777 /dev/bus/usb</li>
+   <li>Il faut être root pour pouvoir accéder en lecture et écriture au NXT par USB. Si vous ne l'êtes pas exécutez la commande suivante : <code>$ sudo chmod -R 777 /dev/bus/usb</code></li>
 </ul>
 
 <h4>
@@ -207,7 +217,9 @@ $ sudo chmod -R 777 /dev/bus/usb</li>
 
 <p>En cas d'erreur, vérifiez la configuration de Bluej :
 Tools – Preferences – Librairies : il doit y avoir le <strong>classes.jar</strong> et il doit être dans le status <strong>loaded</strong>. Si ce n'est pas le cas, il faut l'ajouter (path = /opt/leJOS_NXJ/lib/nxt/classes.jar) et redémarrer Bluej.
-Dans Tools – Preferences – Extensions la variable <strong>NXJ_HOME</strong> doit être égale à <strong>/opt/leJOS_NXJ</strong></p>
+Dans Tools – Preferences – Extensions la variable <strong>NXJ_HOME</strong> doit être égale à <strong>/opt/leJOS_NXJ</strong><br>
+<i>Note: Si vous utilisez la machine virtuelle, ces paramètres ont été préconfigurés et ne devraient pas être modifiés. Si vous rencontrez tout de même des problèmes, <a href="#32-installation-sur-votre-portable">les permanences</a> sont une source d'aide.</i>
+</p>
 
 <h2>
 <a id="34-télécharger-le-programme-dans-le-robot" class="anchor" href="#34-t%C3%A9l%C3%A9charger-le-programme-dans-le-robot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.4) Télécharger le programme dans le robot:</h2>
@@ -351,7 +363,7 @@ pilot<span class="pl-k">.</span>arc(<span class="pl-k">-</span><span class="pl-c
 <div class="highlight highlight-source-java"><pre>pilot<span class="pl-k">.</span>forward();        <span class="pl-c">// Avancer en ligne droite indéfiniment. </span>
 <span class="pl-k">while</span>(<span class="pl-k">!</span><span class="pl-smi">Button</span><span class="pl-c1"><span class="pl-k">.</span>ENTER</span><span class="pl-k">.</span>isDown()) { <span class="pl-c">// Tant que le bouton orange n'est pas pressé...</span>
        <span class="pl-smi">Thread</span><span class="pl-k">.</span>yield();           <span class="pl-c">// Libérer le processeur. </span>
-} 
+}
 pilot<span class="pl-k">.</span>stop();           <span class="pl-c">// Arrêter le robot. </span></pre></div>
 
 <h2>
@@ -527,6 +539,85 @@ Attention : le bon fonctionnement de ce mécanisme dépend du fait que la métho
       </section>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+    <script>
+      // A script to adjust scrolling when clicking on anchor links because of the fixed header on top of the page
+      // Taken from http://jsfiddle.net/ianclark001/rkocah23/, assumed to be in the public domain
+      (function(document, history, location) {
+        var HISTORY_SUPPORT = !!(history && history.pushState);
+
+        var anchorScrolls = {
+        ANCHOR_REGEX: /^#[^ ]+$/,
+        OFFSET_HEIGHT_PX: 141 + 52,
+
+        /**
+         * Establish events, and fix initial scroll position if a hash is provided.
+         */
+        init: function() {
+          this.scrollToCurrent();
+          $(window).on('hashchange', $.proxy(this, 'scrollToCurrent'));
+          $('body').on('click', 'a', $.proxy(this, 'delegateAnchors'));
+        },
+
+        /**
+         * Return the offset amount to deduct from the normal scroll position.
+         * Modify as appropriate to allow for dynamic calculations
+         */
+        getFixedOffset: function() {
+          return this.OFFSET_HEIGHT_PX;
+        },
+
+        /**
+         * If the provided href is an anchor which resolves to an element on the
+         * page, scroll to it.
+         * @param  {String} href
+         * @return {Boolean} - Was the href an anchor.
+         */
+        scrollIfAnchor: function(href, pushToHistory) {
+          var match, anchorOffset;
+
+          if(!this.ANCHOR_REGEX.test(href)) {
+            return false;
+          }
+
+          match = document.getElementById(href.slice(1));
+
+          if(match) {
+            anchorOffset = $(match).offset().top - this.getFixedOffset();
+            $('html, body').animate({ scrollTop: anchorOffset});
+
+            // Add the state to history as-per normal anchor links
+            if(HISTORY_SUPPORT && pushToHistory) {
+              history.pushState({}, document.title, location.pathname + href);
+            }
+          }
+
+          return !!match;
+        },
+
+        /**
+         * Attempt to scroll to the current location's hash.
+         */
+        scrollToCurrent: function(e) {
+          if(this.scrollIfAnchor(window.location.hash) && e) {
+            e.preventDefault();
+          }
+        },
+
+        /**
+         * If the click event's target was an anchor, fix the scroll position.
+         */
+        delegateAnchors: function(e) {
+          var elem = e.target;
+
+          if(this.scrollIfAnchor(elem.getAttribute('href'), true)) {
+            e.preventDefault();
+          }
+        }
+        };
+
+        $(document).ready($.proxy(anchorScrolls, 'init'));
+      })(window.document, window.history, window.location);
+
+    </script
   </body>
 </html>
